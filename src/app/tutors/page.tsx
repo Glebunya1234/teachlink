@@ -1,7 +1,8 @@
+import React from "react";
 
-export default function Home() {
-    return (
-     <>Hello world</>
-    );
-  }
-  
+type Props = {};
+
+const tutorsPage = (props: Props) => {
+  return <div>tutorsPage</div>;
+};
+export default tutorsPage;

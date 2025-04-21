@@ -1,10 +1,10 @@
-import { Experiences } from "@/gen/Experiences";
-
-export default async function Home() {
-
-  const exp = new Experiences({baseURL:"http://localhost:5204/"})
-  exp.experiencesList().then((data)=> {console.log(data.data)})
-  return (
-   <>Hello world</>
-  );
-}
+ import React from 'react'
+ 
+ type Props = {}
+ 
+ const Home = (props: Props) => {
+   return (
+     <div>Home</div>
+   )
+ }
+ export default Home
