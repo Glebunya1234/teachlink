@@ -1,16 +1,71 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import eslint from "@eslint/js";
+import pluginNext from "@next/eslint-plugin-next";
+import tsParser from "@typescript-eslint/parser";
+import prettier from "eslint-config-prettier";
+import _import from "eslint-plugin-import";
+import tseslint from "typescript-eslint";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+/** @type {import('eslint').Linter.Config} */
+export default tseslint.config(
+  {
+    ignores: ["**/.next", "**/node_modules", "**/.turbo"],
+    files: [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.js",
+      "**/*.jsx",
+      "**/*.mjs",
+      "**/*.cjs",
+    ],
+    extends: [
+      eslint.configs.recommended,
+      ...tseslint.configs.strict,
+      ...tseslint.configs.stylistic,
+    ],
+    plugins: {
+      import: _import,
+      prettier: prettier,
+    },
+    languageOptions: {
+      parser: tsParser,
+    },
+    rules: {
+      "no-console": "error",
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-empty-object-type": "off",
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-];
-
-export default eslintConfig;
+      "import/order": [
+        "warn",
+        {
+          groups: [
+            "type",
+            "builtin",
+            "object",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index",
+          ],
+          pathGroups: [
+            {
+              pattern: "~/**",
+              group: "external",
+              position: "after",
+            },
+          ],
+          "newlines-between": "always",
+          alphabetize: {
+            order: "asc",
+            caseInsensitive: true,
+          },
+        },
+      ],
+    },
+  },
+  {
+    plugins: { "@next/next": pluginNext },
+    rules: { ...pluginNext.configs.recommended.rules },
+  }
+);

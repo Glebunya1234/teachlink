@@ -1,6 +1,7 @@
+"use server";
 import React from "react";
 
-type Props = {};
+interface Props {}
 
 const tutorsPage = (props: Props) => {
   return <div>tutorsPage</div>;
