@@ -21,6 +21,11 @@ export interface AnnouncementDTO {
   updatedAt: Date;
 }
 
+export interface AuthDTO {
+  isStudent: boolean;
+  isTeacher: boolean;
+}
+
 export interface CreateAnnouncementDTO {
   id_student: string | null;
   mini_description: string | null;
@@ -46,10 +51,12 @@ export interface CreateReviewDTO {
 
 export interface CreateStudentDTO {
   full_name: string | null;
+  uid: string | null;
 }
 
 export interface CreateTeacherDTO {
   full_name: string | null;
+  uid: string | null;
 }
 
 export interface DegreeDTO {
@@ -72,6 +79,7 @@ export interface ExperienceDTO {
 
 export interface FullTeacherTileDTO {
   id: string | null;
+  uid: string | null;
   full_name?: string | null;
   description?: string | null;
   mini_description?: string | null;
@@ -148,6 +156,7 @@ export enum SortByEnumMDB {
 
 export interface StudentDTO {
   id: string | null;
+  uid: string | null;
   full_name?: string | null;
   city?: string | null;
   /** @format int32 */
@@ -170,6 +179,7 @@ export interface SubjectDTO {
 
 export interface TeacherTileDTO {
   id: string | null;
+  uid: string | null;
   full_name?: string | null;
   mini_description?: string | null;
   school_subjects?: SchoolSubjectDTO[] | null;

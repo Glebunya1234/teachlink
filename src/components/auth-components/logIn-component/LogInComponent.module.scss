@@ -1,0 +1,31 @@
+.LogInComponent {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 380px;
+    width: 100%;
+    padding: 24px;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .LogInComponent_HeaderWrapper {
+
+        font-family: var(--font-geist-sans);
+
+        .HeaderWrapper_H1 {
+            font-size: x-large;
+            font-weight: 600;
+        }
+
+        .HeaderWrapper_span {
+            font-size: 14px;
+            color: var(--secondary-text);
+        }
+    }
+
+    .LogInComponent_Button {
+
+        width: 100%;
+    }
+}

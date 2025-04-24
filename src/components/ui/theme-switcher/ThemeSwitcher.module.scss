@@ -1,0 +1,24 @@
+.ThemeSwitcher {
+    margin-left: auto;
+    margin-right: 5px;
+
+    .icon {
+        height: 16px;
+        width: 16px;
+    }
+
+    .Sun {
+        @extend .icon;
+        color: var(--icon-text);
+        display: var(--visible-sun);
+    }
+
+    .Moon {
+        @extend .icon;
+        color: var(--icon-text);
+        display: var(--visible-moon);
+    }
+
+
+
+}

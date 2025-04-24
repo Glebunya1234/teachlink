@@ -1,0 +1,83 @@
+"use client";
+import { LogOut, Mail, User } from "lucide-react";
+import { useRouter } from "next/navigation";
+import React from "react";
+
+import { Button } from "../button";
+
+import styles from "./ProfileButton.module.scss";
+
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/provider/AuthProvider";
+import useUserSession from "@/store/user-session";
+import { PathPJ } from "@/utils/path";
+
+const ProfileButton = () => {
+  const variable = "Gleb Butskiy";
+  const router = useRouter();
+  const { getSessionUser } = useUserSession();
+  const { logOut } = useAuth();
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className={styles.ProfileButton__Button}>
+          <Avatar className={styles.ProfileButton__Avatar}>
+            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarFallback>AV</AvatarFallback>
+          </Avatar>
+          <p>{getSessionUser?.currentUser?.full_name}</p>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem
+            onClick={async () => {
+              router.push(PathPJ.notification);
+            }}
+          >
+            <Mail />
+            <span>Notification</span>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onClick={async () => {
+              router.push(
+                getSessionUser?.role === "tutors"
+                  ? PathPJ.tutorProfile
+                  : PathPJ.studentProfile
+              );
+            }}
+          >
+            <User />
+            <span>Profile</span>
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+
+        <DropdownMenuSeparator />
+        <DropdownMenuItem
+          onClick={async () => {
+            await logOut();
+
+            router.replace(PathPJ.login);
+          }}
+        >
+          <LogOut />
+          <span>Log out</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
+
+export default ProfileButton;

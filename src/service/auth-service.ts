@@ -1,17 +1,17 @@
+ 
 
 
-import { createClientSupaBase } from './supabase';
+import { createClient } from '@/utils/supabase/client';
 
-const supabase = createClientSupaBase();
+
 interface AuthService {
   email: string;
   password: string;
 }
 
-export const signUpNewUser = async ({ email, password }: AuthService) => {
-  await supabase.auth.signInWithPassword({
-    email: email,
-    password: password,
 
-  });
+export const IsCheckedUser = async () => {
+  const supabase = await createClient()
+  const result = await supabase.auth.getUser();
+  return result.data
 };
