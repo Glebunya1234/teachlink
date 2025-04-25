@@ -17,15 +17,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuth } from "@/provider/AuthProvider";
-import useUserSession from "@/store/user-session";
+import { useAuthStore } from "@/store/auth-provider";
 import { PathPJ } from "@/utils/path";
 
 const ProfileButton = () => {
-  const variable = "Gleb Butskiy";
   const router = useRouter();
-  const { getSessionUser } = useUserSession();
-  const { logOut } = useAuth();
+  const { getSessionUser } = useAuthStore();
+  const { logOut } = useAuthStore();
 
   return (
     <DropdownMenu>

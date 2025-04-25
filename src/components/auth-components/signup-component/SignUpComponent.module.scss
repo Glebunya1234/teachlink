@@ -1,4 +1,4 @@
-.LogInComponent {
+.SignUpComponent {
     display: flex;
     flex-direction: column;
     gap: 14px;
@@ -9,7 +9,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
-    .LogInComponent_HeaderWrapper {
+    .SignUpComponent_HeaderWrapper {
 
         font-family: var(--font-geist-sans);
 
@@ -24,28 +24,8 @@
         }
     }
 
-    .LogInComponent_Button {
+    .SignUpComponent_Button {
 
         width: 100%;
-    }
-
-    .LogInComponent_FooterWrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 14px;
-        color: var(--secondary-text);
-
-
-        span {
-            color: var(--geist-foreground);
-            cursor: pointer;
-            margin-right: 5px;
-        }
-
-        .FooterWrapper_Button {
-            padding: 0;
-        }
-
     }
 }

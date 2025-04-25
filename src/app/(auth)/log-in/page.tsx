@@ -1,14 +1,15 @@
 import React from "react";
 
-import styles from "./log-in.module.scss"
+import styles from "../auth.module.scss";
 
 import LogInComponent from "@/components/auth-components/logIn-component/LogInComponent";
-const SignInPage = () => {
+
+const LogInPage = () => {
   return (
-    <main className={styles.LoginInPage}>
+    <main className={styles.page}>
       <LogInComponent />
     </main>
   );
 };
 
-export default SignInPage;
+export default LogInPage;

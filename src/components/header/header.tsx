@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 import SessionActionComponent from "../session-actions/session-action-component";
 import ThemeSwitcher from "../ui/theme-switcher/ThemeSwitcher";
@@ -8,8 +8,25 @@ import ThemeSwitcher from "../ui/theme-switcher/ThemeSwitcher";
 import styles from "./header.module.scss";
 
 import stylepages from "@/app/main.module.scss";
+import { useAuthStore } from "@/store/auth-provider";
 import { PathPJ } from "@/utils/path";
+import { createClient } from "@/utils/supabase/client";
 const Header = ({ children }: Readonly<{ children: React.ReactNode }>) => {
+  useEffect(() => {
+    const supabase = createClient();
+    const { data } = supabase.auth.onAuthStateChange(async (_, session) => {
+      if (!session) {
+        useAuthStore.getState().setSessionUser(null);
+      }
+    });
+
+    useAuthStore.getState().updateData();
+
+    return () => {
+      data.subscription.unsubscribe();
+    };
+  }, []);
+
   return (
     <div>
       <header className={styles.Header}>

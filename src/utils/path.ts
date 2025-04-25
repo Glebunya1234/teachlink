@@ -6,6 +6,6 @@ export const PathPJ = {
     tutors: "/tutors",
     tutorsPagination: "/tutors/",
     notification: "/notification",
-    login:"/log-in"
-
+    login: "/log-in",
+    signup: "/sign-up"
 }

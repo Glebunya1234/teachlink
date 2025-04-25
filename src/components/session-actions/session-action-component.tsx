@@ -3,10 +3,10 @@
 import AuthButtons from "../auth-components/auth-buttons/AuthButtons";
 import ProfileButton from "../ui/profile-button/ProfileButton";
 
-import useUserSession from "@/store/user-session";
+import { useAuthStore } from "@/store/auth-provider";
 
 const SessionActionComponent = () => {
-  const { getSessionUser } = useUserSession();
+  const { getSessionUser } = useAuthStore();
 
   return <>{!getSessionUser ? <AuthButtons /> : <ProfileButton />}</>;
 };
