@@ -7,5 +7,6 @@ export const PathPJ = {
     tutorsPagination: "/tutors/",
     notification: "/notification",
     login: "/log-in",
-    signup: "/sign-up"
+    signup: "/sign-up",
+    baseURL: "http://localhost:5204",
 }

@@ -8,7 +8,7 @@ import tseslint from "typescript-eslint";
 /** @type {import('eslint').Linter.Config} */
 export default tseslint.config(
   {
-    ignores: ["**/.next", "**/node_modules", "**/.turbo"],
+    ignores: ["**/.next/**", "**/node_modules/**", "**/.turbo/**"],
     files: [
       "**/*.ts",
       "**/*.tsx",

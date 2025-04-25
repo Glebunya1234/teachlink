@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import BackButton from "../back-button/BackButton";
 import { Spans } from "../span-objects";
 
 import styles from "./SignUpComponent.module.scss";
@@ -44,8 +45,8 @@ const SignUpComponent = () => {
   });
 
   const onSubmit = async (values: AuthSchemaType) => {
-    setLoading(true);
     try {
+      setLoading(true);
       if (values.username === undefined || values.isTeacher === undefined) {
         return;
       }
@@ -78,9 +79,10 @@ const SignUpComponent = () => {
       }
 
       toast({
-        title: "Scheduled: Catch up",
+        title: "Success",
         duration: 2000,
-        description: "Friday, February 10, 2023 at 5:57 PM",
+        description: "Sign Up successful.",
+        variant: "default",
       });
 
       router.replace(
@@ -88,6 +90,8 @@ const SignUpComponent = () => {
           ? PathPJ.tutorProfile
           : PathPJ.studentProfile
       );
+
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       toast({
         variant: "destructive",
@@ -105,7 +109,10 @@ const SignUpComponent = () => {
         className={styles.SignUpComponent}
       >
         <div className={styles.SignUpComponent_HeaderWrapper}>
-          <h1 className={styles.HeaderWrapper_H1}>Sign Up</h1>
+          <div className={styles.HeaderWrapper_H1}>
+            <h1>Sign Up</h1>
+            <BackButton />
+          </div>
           <span className={styles.HeaderWrapper_span}>{Spans.SignDesc}</span>
         </div>
         <FormField
@@ -189,11 +196,7 @@ const SignUpComponent = () => {
           )}
         />
 
-        <Button
-          disabled={loading ? true : false}
-          type="submit"
-          className={styles.LogInComponent_Button}
-        >
+        <Button disabled={loading ? true : false} type="submit">
           {loading ? <Loader2 className="animate-spin" /> : "Sign Up"}
         </Button>
       </form>

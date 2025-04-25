@@ -14,20 +14,23 @@
         font-family: var(--font-geist-sans);
 
         .HeaderWrapper_H1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        h1 {
             font-size: x-large;
             font-weight: 600;
         }
 
-        .HeaderWrapper_span {
+        span {
             font-size: 14px;
             color: var(--secondary-text);
         }
     }
 
-    .LogInComponent_Button {
-
-        width: 100%;
-    }
 
     .LogInComponent_FooterWrapper {
         display: flex;
@@ -39,7 +42,6 @@
 
         span {
             color: var(--geist-foreground);
-            cursor: pointer;
             margin-right: 5px;
         }
 

@@ -2,10 +2,10 @@ import type { IUser } from "@/types/store-types";
 
 import { create } from "zustand";
 
-import { IsChekedRole } from "@/gen/IsChekedRole";
-import { Students } from "@/gen/Students";
-import { Teachers } from "@/gen/Teachers";
 import { TSignIn, TSignUp, signInUserPassword, signUpUserPassword, logOut as logoutAPI } from "@/provider/FunctionProvider";
+import { AuthQuery } from "@/quaries/auth";
+import { StudentQuery } from "@/quaries/students";
+import { TeacherQuery } from "@/quaries/teachers";
 import { createClient } from "@/utils/supabase/client";
 
 interface AuthState {
@@ -36,6 +36,7 @@ export const useAuthStore = create<AuthState>((set) => ({
     },
 
     updateData: async () => {
+        let currentUser = null;
         const supabase = createClient();
         const { data } = await supabase.auth.getSession();
         if (!data.session) {
@@ -45,21 +46,13 @@ export const useAuthStore = create<AuthState>((set) => ({
 
         const userId = data.session.user.id;
 
-        const { data: role } = await new IsChekedRole({
-            baseURL: "http://localhost:5204",
-        }).isChekedRoleDetail(userId);
-
-        let currentUser = null;
+        const { data: role } = await AuthQuery().isChekedRoleDetail(userId);
 
         if (role.isStudent) {
-            const { data: user } = await new Students({
-                baseURL: "http://localhost:5204",
-            }).studentsDetail(userId);
+            const { data: user } = await StudentQuery().studentsDetail(userId);
             currentUser = user;
         } else if (role.isTeacher) {
-            const { data: user } = await new Teachers({
-                baseURL: "http://localhost:5204",
-            }).teachersDetail(userId);
+            const { data: user } = await TeacherQuery().teachersDetail(userId);
             currentUser = user;
         }
 

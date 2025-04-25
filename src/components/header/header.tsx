@@ -11,7 +11,9 @@ import stylepages from "@/app/main.module.scss";
 import { useAuthStore } from "@/store/auth-provider";
 import { PathPJ } from "@/utils/path";
 import { createClient } from "@/utils/supabase/client";
+
 const Header = ({ children }: Readonly<{ children: React.ReactNode }>) => {
+
   useEffect(() => {
     const supabase = createClient();
     const { data } = supabase.auth.onAuthStateChange(async (_, session) => {

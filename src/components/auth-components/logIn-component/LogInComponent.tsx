@@ -1,10 +1,12 @@
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
+import BackButton from "../back-button/BackButton";
 import { Spans } from "../span-objects";
 
 import styles from "./LogInComponent.module.scss";
@@ -20,12 +22,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 import { useAuthStore } from "@/store/auth-provider";
 import { PathPJ } from "@/utils/path";
 import { AuthSchema, AuthSchemaType } from "@/validations/shemas";
 
 const LogInComponent = () => {
   const { signInUserPassword } = useAuthStore();
+  const { toast } = useToast();
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const form = useForm<AuthSchemaType>({
@@ -37,21 +42,47 @@ const LogInComponent = () => {
   });
 
   const onSubmit = async (values: AuthSchemaType) => {
-    const { error } = await signInUserPassword(values.email, values.password);
+    try {
+      setLoading(true);
 
-    if (error) {
-      form.setError("email", {
-        message: "Check your email",
+      const { error } = await signInUserPassword(values.email, values.password);
+
+      if (error) {
+        form.setError("email", {
+          message: "Check your email",
+        });
+
+        form.setError("password", {
+          message: "Check your password",
+        });
+        toast({
+          title: "Error",
+          duration: 2000,
+          description: "An error occurred during Log in.",
+          variant: "destructive",
+        });
+        return;
+      }
+
+      toast({
+        title: "Success",
+        duration: 2000,
+        description: "Log in successful.",
+        variant: "default",
       });
+      router.replace(PathPJ.tutors);
 
-      form.setError("password", {
-        message: "Check your password",
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      toast({
+        title: "Error",
+        duration: 2000,
+        description: "An error occurred during Log in.",
+        variant: "destructive",
       });
-
-      return;
+    } finally {
+      setLoading(false);
     }
-
-    router.replace(PathPJ.tutors);
   };
   return (
     <Form {...form}>
@@ -60,8 +91,11 @@ const LogInComponent = () => {
         className={styles.LogInComponent}
       >
         <div className={styles.LogInComponent_HeaderWrapper}>
-          <h1 className={styles.HeaderWrapper_H1}>Login</h1>
-          <span className={styles.HeaderWrapper_span}>{Spans.LoginDesc}</span>
+          <div className={styles.HeaderWrapper_H1}>
+            <h1>Login</h1>
+            <BackButton />
+          </div>
+          <span>{Spans.LoginDesc}</span>
         </div>
         <FormField
           control={form.control}
@@ -91,8 +125,9 @@ const LogInComponent = () => {
             </FormItem>
           )}
         />
-        <Button type="submit" className={styles.LogInComponent_Button}>
-          Login
+
+        <Button disabled={loading ? true : false} type="submit">
+          {loading ? <Loader2 className="animate-spin" /> : "Login"}
         </Button>
 
         <div className={styles.LogInComponent_FooterWrapper}>
