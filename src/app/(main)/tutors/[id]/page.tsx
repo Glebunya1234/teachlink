@@ -1,7 +1,7 @@
 
 import React from 'react'
 
-type Props = {}
+interface Props {}
 
 const tutorsIdPage = (props: Props) => {
   return (

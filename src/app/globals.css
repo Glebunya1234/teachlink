@@ -64,6 +64,8 @@
     --border-dot: #e4e5e6;
 
     --page-maxsize: 1400px;
+
+    --card-teacher-shadow: #0000001a;
   }
   .dark {
     --page-maxsize: 1400px;
@@ -76,6 +78,12 @@
     --secondary-text: #8b8b93;
 
     --border-dot: #272829;
+    
+    --card-teacher-shadow: #8d8d8d1a;
+
+
+
+
 
     --background: 0 0% 3.9%;
 

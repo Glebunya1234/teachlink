@@ -1,10 +1,10 @@
 import eslint from "@eslint/js";
 import pluginNext from "@next/eslint-plugin-next";
+import pluginQuery from "@tanstack/eslint-plugin-query";
 import tsParser from "@typescript-eslint/parser";
 import prettier from "eslint-config-prettier";
 import _import from "eslint-plugin-import";
 import tseslint from "typescript-eslint";
-
 /** @type {import('eslint').Linter.Config} */
 export default tseslint.config(
   {
@@ -21,6 +21,7 @@ export default tseslint.config(
       eslint.configs.recommended,
       ...tseslint.configs.strict,
       ...tseslint.configs.stylistic,
+      ...pluginQuery.configs['flat/recommended'],
     ],
     plugins: {
       import: _import,
