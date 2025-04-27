@@ -23,7 +23,7 @@ const TeachersCard: FC<Props> = ({ teacher }) => {
         <div className={styles.SectorAvatar_Wrapper}>
           <AspectRatio ratio={1 / 1}>
             <Image
-              src="https://preview.redd.it/youtube-avatar-advice-v0-nzyfuumjlkjb1.png?width=640&crop=smart&auto=webp&s=58f4301e4bb70d8037467bad72a80c88d5565563"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUspugOXub65sbxVHOEaD-JEKC8NNWgkWhlg&s"
               alt="Avatar"
               layout="fill"
               objectFit="cover"

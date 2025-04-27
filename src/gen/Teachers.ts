@@ -14,7 +14,7 @@ import {
   FullTeacherTileDTO,
   ProblemDetails,
   SortByEnumMDB,
-  TeacherTileDTO,
+  TeacherTileDTOPaginationResponse,
   UpdateTeacherDTO,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -51,7 +51,7 @@ export class Teachers<SecurityDataType = unknown> extends HttpClient<SecurityDat
     },
     params: RequestParams = {},
   ) =>
-    this.request<TeacherTileDTO[], ProblemDetails | void>({
+    this.request<TeacherTileDTOPaginationResponse, ProblemDetails | void>({
       path: `/api/teachers`,
       method: "GET",
       query: query,

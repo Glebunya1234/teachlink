@@ -203,6 +203,13 @@ export interface TeacherTileDTO {
   updatedAt: Date;
 }
 
+export interface TeacherTileDTOPaginationResponse {
+  items?: TeacherTileDTO[];
+  hasNextPage?: boolean;
+  /** @format int32 */
+  totalCount?: number;
+}
+
 export interface UpdateAnnouncementDTO {
   mini_description?: string;
   school_subjects?: SchoolSubjectDTO[];
