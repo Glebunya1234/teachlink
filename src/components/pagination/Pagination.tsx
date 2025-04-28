@@ -1,5 +1,6 @@
 "use client";
 import { usePathname, useSearchParams } from "next/navigation";
+import { FC } from "react";
 
 import {
   Pagination,
@@ -17,10 +18,10 @@ interface PaginationDemoProps {
   currentPage: number;
 }
 
-export const PaginationComponent = ({
+export const PaginationComponent: FC<PaginationDemoProps> = ({
   hasNextPage,
   currentPage,
-}: PaginationDemoProps) => {
+}) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 

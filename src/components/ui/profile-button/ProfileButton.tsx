@@ -17,7 +17,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuthStore } from "@/store/auth-provider";
+import { useAuthStore } from "@/store/auth-store";
 import { PathPJ } from "@/utils/path";
 
 const ProfileButton = () => {

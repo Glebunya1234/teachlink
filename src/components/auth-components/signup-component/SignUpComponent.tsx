@@ -23,7 +23,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { useAuthStore } from "@/store/auth-provider";
+import { useAuthStore } from "@/store/auth-store";
 import { PathPJ } from "@/utils/path";
 import { AuthSchema, AuthSchemaType } from "@/validations/shemas";
 

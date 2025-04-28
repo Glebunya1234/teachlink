@@ -1,12 +1,11 @@
 import React from "react";
 
-import { Checkbox } from "../ui/checkbox";
-import { ScrollArea } from "../ui/scroll-area";
 import { Separator } from "../ui/separator";
 
 import CityInput from "./city-input/CityInput";
 import PriceRangeInput from "./price-range-input/PriceRangeInput";
 import SortCombobox from "./sort-combobox/SortCombobox";
+import { SubjectCheckboxes } from "./subjects-checkboxes/SubjectCheckboxes";
 import styles from "./TeacherFilters.module.scss";
 
 import { SubjectQuery } from "@/quaries/subjects";
@@ -19,15 +18,7 @@ const TeacherFilters = async ({
     <div className={styles.TeacherFilters}>
       <section className={styles.TeacherFilters_WrapperFilters}>
         <h3>Subjects</h3>
-
-        <ScrollArea className={styles.TeacherFilters_Subjects}>
-          {subjects?.map((item) => (
-            <div key={item.id} className="flex items-center space-x-2 mb-2">
-              <Checkbox id={`${item.id}`} />
-              <label htmlFor={`${item.id}`}>{item.subject}</label>
-            </div>
-          ))}
-        </ScrollArea>
+        <SubjectCheckboxes subjects={subjects} />
         <Separator />
 
         <h3>Sort by city</h3>

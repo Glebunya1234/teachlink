@@ -8,21 +8,22 @@ import ThemeSwitcher from "../ui/theme-switcher/ThemeSwitcher";
 import styles from "./header.module.scss";
 
 import stylepages from "@/app/main.module.scss";
-import { useAuthStore } from "@/store/auth-provider";
+import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { PathPJ } from "@/utils/path";
 import { createClient } from "@/utils/supabase/client";
 
 const Header = ({ children }: Readonly<{ children: React.ReactNode }>) => {
+  const { setSessionUser, updateData } = useAuthStore((state) => state);
 
   useEffect(() => {
     const supabase = createClient();
     const { data } = supabase.auth.onAuthStateChange(async (_, session) => {
       if (!session) {
-        useAuthStore.getState().setSessionUser(null);
+        setSessionUser(null);
       }
     });
 
-    useAuthStore.getState().updateData();
+    updateData();
 
     return () => {
       data.subscription.unsubscribe();

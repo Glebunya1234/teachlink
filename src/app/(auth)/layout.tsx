@@ -6,6 +6,7 @@ import "@/app/globals.css";
 
 import { ThemeProvider } from "@/components/theme-provider/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
+import { AuthStoreProvider } from "@/provider/Store-Provider/auth-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,15 +33,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-        <Toaster />
+        <AuthStoreProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+          <Toaster />
+        </AuthStoreProvider>
       </body>
     </html>
   );

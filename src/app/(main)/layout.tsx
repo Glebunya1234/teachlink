@@ -7,6 +7,7 @@ import "@/app/globals.css";
 import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { QuaryClientProvider } from "@/provider/QueryProvider/QuaryClientProvider";
+import { AuthStoreProvider } from "@/provider/Store-Provider/auth-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,16 +34,18 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <QuaryClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Header>{children}</Header>
-          </ThemeProvider>
-        </QuaryClientProvider>
+        <AuthStoreProvider>
+          <QuaryClientProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Header>{children}</Header>
+            </ThemeProvider>
+          </QuaryClientProvider>
+        </AuthStoreProvider>
       </body>
     </html>
   );
