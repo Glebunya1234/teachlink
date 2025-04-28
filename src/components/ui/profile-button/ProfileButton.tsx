@@ -17,13 +17,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useAuthStore } from "@/store/auth-store";
+import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { PathPJ } from "@/utils/path";
 
 const ProfileButton = () => {
   const router = useRouter();
-  const { getSessionUser } = useAuthStore();
-  const { logOut } = useAuthStore();
+  const { getSessionUser, logOut } = useAuthStore((state) => state);
 
   return (
     <DropdownMenu>

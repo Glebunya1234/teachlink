@@ -23,12 +23,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { useAuthStore } from "@/store/auth-store";
+import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { PathPJ } from "@/utils/path";
 import { AuthSchema, AuthSchemaType } from "@/validations/shemas";
 
 const LogInComponent = () => {
-  const { signInUserPassword } = useAuthStore();
+  const { signInUserPassword } = useAuthStore((state) => state);
   const { toast } = useToast();
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();

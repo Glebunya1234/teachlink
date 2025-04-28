@@ -39,7 +39,7 @@ const Header = ({ children }: Readonly<{ children: React.ReactNode }>) => {
               <Link href={PathPJ.tutors}>Tutors</Link>
             </li>
             <li className={styles.Header__nav__item}>
-              <Link href={PathPJ.tutors}>Online tutors</Link>
+              <Link href={`${PathPJ.tutors}?online=true`}>Online tutors</Link>
             </li>
             <li className={styles.Header__nav__item}>
               <Link href={PathPJ.announcement}>Announcement</Link>

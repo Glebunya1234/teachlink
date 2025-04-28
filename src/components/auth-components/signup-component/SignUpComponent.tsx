@@ -23,13 +23,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { useAuthStore } from "@/store/auth-store";
+import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { PathPJ } from "@/utils/path";
 import { AuthSchema, AuthSchemaType } from "@/validations/shemas";
 
 const SignUpComponent = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const signUpUserPassword = useAuthStore((state) => state.signUpUserPassword);
+  const { signUpUserPassword } = useAuthStore((state) => state);
 
   const { toast } = useToast();
   const router = useRouter();
