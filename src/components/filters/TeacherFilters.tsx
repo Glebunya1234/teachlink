@@ -3,6 +3,7 @@ import React from "react";
 import { Separator } from "../ui/separator";
 
 import CityInput from "./city-input/CityInput";
+import { OnlineCheckbox } from "./online-checkbox/OnlineCheckbox";
 import PriceRangeInput from "./price-range-input/PriceRangeInput";
 import SortCombobox from "./sort-combobox/SortCombobox";
 import { SubjectCheckboxes } from "./subjects-checkboxes/SubjectCheckboxes";
@@ -19,6 +20,9 @@ const TeacherFilters = async ({
       <section className={styles.TeacherFilters_WrapperFilters}>
         <h3>Subjects</h3>
         <SubjectCheckboxes subjects={subjects} />
+        <Separator />
+        <h3>Training format</h3>
+        <OnlineCheckbox />
         <Separator />
 
         <h3>Sort by city</h3>

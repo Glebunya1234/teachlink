@@ -36,8 +36,10 @@ const tutorsIdPage: FC<Props> = async ({ params, searchParams }) => {
 
   const city = typeof query.city === "string" ? query.city : undefined;
 
-  const subjects = typeof query.subjects === "string" ? query.subjects : "";
+  const online =
+    typeof query.online === "string" ? query.online === "true" : undefined;
 
+  const subjects = typeof query.subjects === "string" ? query.subjects : "";
   const { data } = await TeacherQuery().teachersList({
     offset: id * 10 - 1,
     limit: 20,
@@ -46,6 +48,7 @@ const tutorsIdPage: FC<Props> = async ({ params, searchParams }) => {
     minPrice,
     maxPrice,
     subjects,
+    isOnline: online,
   });
 
   return (

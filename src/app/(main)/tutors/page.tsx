@@ -31,6 +31,9 @@ const TutorsPage: FC<Props> = async ({ searchParams }) => {
 
   const city = typeof query.city === "string" ? query.city : undefined;
 
+  const online =
+    typeof query.online === "string" ? query.online === "true" : undefined;
+
   const subjects = typeof query.subjects === "string" ? query.subjects : "";
 
   const { data } = await TeacherQuery().teachersList({
@@ -39,6 +42,7 @@ const TutorsPage: FC<Props> = async ({ searchParams }) => {
     minPrice,
     maxPrice,
     subjects,
+    isOnline: online,
   });
   return (
     <main className={styles.TutorsPage}>
