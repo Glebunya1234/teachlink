@@ -31,19 +31,14 @@ const TutorsPage: FC<Props> = async ({ searchParams }) => {
 
   const city = typeof query.city === "string" ? query.city : undefined;
 
-  const subjects =
-    typeof query.subjects === "string"
-      ? query.subjects.split(",")
-      : Array.isArray(query.subjects)
-      ? query.subjects.flatMap((item) => item.split(","))
-      : undefined;
-  console.log("first", subjects ? subjects.join(",") : undefined);
+  const subjects = typeof query.subjects === "string" ? query.subjects : "";
+
   const { data } = await TeacherQuery().teachersList({
     sortBy: sort,
     city,
     minPrice,
     maxPrice,
-    subjects: subjects ? subjects.join(",") : undefined,
+    subjects,
   });
   return (
     <main className={styles.TutorsPage}>
