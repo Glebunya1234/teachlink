@@ -11,13 +11,14 @@ interface Props {
 }
 
 export const EmailInputForm: FC<Props> = ({ styles, email }) => {
-  const [emails, setEmail] = useState<string | undefined>("");
+  const [emails, setEmail] = useState<string>("");
   useEffect(() => {
-    setEmail(email);
+    setEmail(email || "");
   }, [email]);
+
   return (
     <>
-      {/* <Label className={styles.ProfilePage_Span} htmlFor="email">
+      <Label className={styles.ProfilePage_Span} htmlFor="email">
         Email
       </Label>
       <Input
@@ -27,7 +28,7 @@ export const EmailInputForm: FC<Props> = ({ styles, email }) => {
         value={emails}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email"
-      /> */}
+      />
     </>
   );
 };
