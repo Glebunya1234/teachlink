@@ -99,6 +99,8 @@ export interface FullTeacherTileDTO {
   price?: number;
   /** @format int32 */
   review_count?: number;
+  /** @format int32 */
+  phone_number?: number;
   /** @format double */
   average_rating?: number;
   /** @format date-time */
@@ -169,12 +171,12 @@ export interface StudentDTO {
 }
 
 export interface SubjectDTO {
-  id?: string;
-  subject?: string;
+  id: string;
+  subject: string;
   /** @format date-time */
-  createdAt?: Date;
+  createdAt: Date;
   /** @format date-time */
-  updatedAt?: Date;
+  updatedAt: Date;
 }
 
 export interface TeacherTileDTO {
@@ -257,4 +259,6 @@ export interface UpdateTeacherDTO {
   average_rating?: number;
   /** @format int32 */
   price?: number;
+  /** @format int32 */
+  phone_number?: number;
 }

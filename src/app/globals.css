@@ -60,7 +60,7 @@
 
     --foriegn-text: #09090b;
     --secondary-text: #888890;
-
+    --secondary-text-profile: #535358;
     --border-dot: #e4e5e6;
 
     --page-maxsize: 1400px;
@@ -78,12 +78,9 @@
     --secondary-text: #8b8b93;
 
     --border-dot: #272829;
-    
+
     --card-teacher-shadow: #8d8d8d1a;
-
-
-
-
+    --secondary-text-profile: #bbbbbb;
 
     --background: 0 0% 3.9%;
 

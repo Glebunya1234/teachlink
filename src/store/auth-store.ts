@@ -3,9 +3,7 @@ import type { IUser } from "@/types/store-types";
 import { createStore } from "zustand";
 
 import { TSignIn, TSignUp, signInUserPassword, signUpUserPassword, logOut as logoutAPI } from "@/provider/FunctionProvider";
-import { AuthQuery } from "@/quaries/auth";
-import { StudentQuery } from "@/quaries/students";
-import { TeacherQuery } from "@/quaries/teachers";
+import { TeacherQuery, StudentQuery, AuthQuery } from "@/quaries";
 import { createClient } from "@/utils/supabase/client";
 
 export interface AuthState {
@@ -61,6 +59,7 @@ export const createAuthStore = () => {
                 currentUser,
                 role: role.isTeacher ? "tutors" : role.isStudent ? "student" : null,
                 user: data.session.user,
+                session: data.session,
             };
 
             set({ getSessionUser: sessionUser });

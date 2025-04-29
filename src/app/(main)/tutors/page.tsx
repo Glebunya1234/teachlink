@@ -5,7 +5,7 @@ import styles from "./tutors.module.scss";
 import TeachersCard from "@/components/card/teachers-card/TeachersCard";
 import { PaginationComponent } from "@/components/pagination";
 import { SortByEnumMDB } from "@/gen/data-contracts";
-import { TeacherQuery } from "@/quaries/teachers";
+import { TeacherQuery } from "@/quaries";
 interface Props {
   // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;

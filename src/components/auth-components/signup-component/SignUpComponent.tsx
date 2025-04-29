@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import BackButton from "../back-button/BackButton";
-import { Spans } from "../span-objects";
 
 import styles from "./SignUpComponent.module.scss";
 
@@ -22,6 +21,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Spans } from "@/helpers/span-objects-auth";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { PathPJ } from "@/utils/path";

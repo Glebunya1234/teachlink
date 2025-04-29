@@ -1,4 +1,4 @@
-import { User } from "@supabase/supabase-js"
+import { Session, User } from "@supabase/supabase-js"
 
 import { FullTeacherTileDTO, StudentDTO } from "@/gen/data-contracts"
 
@@ -7,4 +7,5 @@ export interface IUser {
     // objec_id: string | null,
     currentUser: FullTeacherTileDTO | StudentDTO | null
     user: User | null
+    session: Session | null
 }

@@ -6,3 +6,12 @@ export const TeacherQuery = () => {
         baseURL: PathPJ.baseURL,
     })
 }
+export const TeacherAuthQuery = (accessToken: string) => {
+    return new Teachers({
+        baseURL: PathPJ.baseURL,
+        headers: {
+            Authorization: `Bearer ${accessToken}`,
+        }
+    })
+}
+

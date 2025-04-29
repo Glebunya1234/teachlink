@@ -6,6 +6,7 @@ import "@/app/globals.css";
 
 import Header from "@/components/header";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 import { QuaryClientProvider } from "@/provider/QueryProvider/QuaryClientProvider";
 import { AuthStoreProvider } from "@/provider/Store-Provider/auth-provider";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
             >
               <Header>{children}</Header>
             </ThemeProvider>
+            <Toaster />
           </QuaryClientProvider>
         </AuthStoreProvider>
       </body>
