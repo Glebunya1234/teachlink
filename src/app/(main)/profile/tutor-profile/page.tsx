@@ -5,7 +5,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import styles from "./tutor-profile.module.scss";
+import styles from "../profile.module.scss";
 
 import {
   AgeInputForm,
@@ -43,7 +43,7 @@ const ProfilePage = () => {
     resolver: zodResolver(ProfileTicherSchema),
     defaultValues: {
       full_name: "",
-      phone_number: undefined,
+      phone_number: "",
       show_info: false,
       price: undefined,
       experience: "",
@@ -60,7 +60,7 @@ const ProfilePage = () => {
     },
   });
 
-  const { getSessionUser } = useAuthStore((state) => state);
+  const { getSessionUser, updateData } = useAuthStore((state) => state);
   const { toast } = useToast();
   const TeacherFunc = () => {
     const userId = getSessionUser?.user?.id;
@@ -96,19 +96,19 @@ const ProfilePage = () => {
       await TeacherAuthQuery(
         getSessionUser.session.access_token
       ).teachersPartialUpdate(getSessionUser.user.id, changedFields);
-
+      await updateData();
       toast({
         title: "Success",
         duration: 2000,
         description: "Profile updated successfully.",
         variant: "default",
       });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       toast({
-        title: "Error",
+        title: "Failed to update profile.",
         duration: 2000,
-        description: "Failed to update profile. Please try again later.",
+        description: `${error?.response?.data || "Please try again later"}`,
         variant: "destructive",
       });
     }

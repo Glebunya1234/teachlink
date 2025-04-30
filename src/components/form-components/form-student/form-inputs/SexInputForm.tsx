@@ -11,37 +11,35 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ProfileTicherSchemaType } from "@/validations/shemas";
+import { ProfileStudentSchemaType } from "@/validations/shemas";
 
 interface Props {
-  form: UseFormReturn<ProfileTicherSchemaType>;
+  form: UseFormReturn<ProfileStudentSchemaType>;
   styles: Record<string, string>;
-  phone?: string;
+  sex?: string;
 }
 
-export const PhoneInputForm: FC<Props> = ({ form, styles, phone }) => {
+export const SexInputForm: FC<Props> = ({ form, styles, sex }) => {
   useEffect(() => {
-    if (phone) {
-      form.setValue("phone_number", phone, { shouldDirty: true });
+    if (sex) {
+      form.setValue("sex", sex, { shouldDirty: true });
     }
-  }, [phone]);
+  }, [sex]);
   return (
     <>
-      <Label className={styles.ProfilePage_Span} htmlFor="phone">
-        Phone number
+      <Label className={styles.ProfilePage_Span} htmlFor="sex">
+        Sex:
       </Label>
-      {/* <p className="mr-[-10px] text-lg font-bold text-neutral-500">+</p> */}
+
       <FormField
         control={form.control}
-        name="phone_number"
+        name="sex"
         render={({ field }) => (
           <FormItem>
             <FormControl>
-              <Input
-                placeholder="XXX-XXX-XXXX"
-                {...field}
-                value={field.value ?? ""}
-              />
+              <div>
+                <Input placeholder="Male/Famale/...Other?" {...field} />
+              </div>
             </FormControl>
             <FormMessage />
           </FormItem>

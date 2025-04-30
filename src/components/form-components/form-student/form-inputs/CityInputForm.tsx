@@ -11,37 +11,40 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ProfileTicherSchemaType } from "@/validations/shemas";
+import { ProfileStudentSchemaType } from "@/validations/shemas";
 
 interface Props {
-  form: UseFormReturn<ProfileTicherSchemaType>;
+  form: UseFormReturn<ProfileStudentSchemaType>;
   styles: Record<string, string>;
-  phone?: string;
+  city?: string;
 }
 
-export const PhoneInputForm: FC<Props> = ({ form, styles, phone }) => {
+export const CityInputForm: FC<Props> = ({ form, styles, city }) => {
   useEffect(() => {
-    if (phone) {
-      form.setValue("phone_number", phone, { shouldDirty: true });
+    if (city) {
+      form.setValue("city", city, {
+        shouldDirty: true,
+      });
     }
-  }, [phone]);
+  }, [city]);
   return (
     <>
-      <Label className={styles.ProfilePage_Span} htmlFor="phone">
-        Phone number
+      <Label className={styles.ProfilePage_Span} htmlFor="City">
+        City:
       </Label>
-      {/* <p className="mr-[-10px] text-lg font-bold text-neutral-500">+</p> */}
       <FormField
         control={form.control}
-        name="phone_number"
+        name="city"
         render={({ field }) => (
           <FormItem>
             <FormControl>
-              <Input
-                placeholder="XXX-XXX-XXXX"
-                {...field}
-                value={field.value ?? ""}
-              />
+              <div>
+                <Input
+                  placeholder="City name"
+                  {...field}
+                  value={field.value ?? ""}
+                />
+              </div>
             </FormControl>
             <FormMessage />
           </FormItem>

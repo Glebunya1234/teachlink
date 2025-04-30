@@ -99,8 +99,7 @@ export interface FullTeacherTileDTO {
   price?: number;
   /** @format int32 */
   review_count?: number;
-  /** @format int32 */
-  phone_number?: number;
+  phone_number?: string;
   /** @format double */
   average_rating?: number;
   /** @format date-time */
@@ -164,6 +163,7 @@ export interface StudentDTO {
   /** @format int32 */
   age?: number;
   sex?: string;
+  phone_number?: string;
   /** @format date-time */
   createdAt: Date;
   /** @format date-time */
@@ -235,6 +235,7 @@ export interface UpdateStudentDTO {
   /** @format int32 */
   age?: number;
   sex?: string;
+  phone_number?: string;
 }
 
 export interface UpdateTeacherDTO {
@@ -255,10 +256,9 @@ export interface UpdateTeacherDTO {
   show_info?: boolean;
   /** @format int32 */
   review_count?: number;
+  phone_number?: string;
   /** @format double */
   average_rating?: number;
   /** @format int32 */
   price?: number;
-  /** @format int32 */
-  phone_number?: number;
 }

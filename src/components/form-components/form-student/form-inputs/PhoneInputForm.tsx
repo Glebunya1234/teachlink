@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ProfileTicherSchemaType } from "@/validations/shemas";
+import { ProfileStudentSchemaType } from "@/validations/shemas";
 
 interface Props {
-  form: UseFormReturn<ProfileTicherSchemaType>;
+  form: UseFormReturn<ProfileStudentSchemaType>;
   styles: Record<string, string>;
   phone?: string;
 }
