@@ -1,5 +1,5 @@
 "use client";
-import { LogOut, Mail, User } from "lucide-react";
+import { AtSign, LogOut, Mail, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -29,7 +29,7 @@ const ProfileButton = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className={styles.ProfileButton__Button}>
           <Avatar className={styles.ProfileButton__Avatar}>
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUspugOXub65sbxVHOEaD-JEKC8NNWgkWhlg&s" />
             <AvatarFallback>AV</AvatarFallback>
           </Avatar>
           <p>{getSessionUser?.currentUser?.full_name}</p>
@@ -59,6 +59,19 @@ const ProfileButton = () => {
             <User />
             <span>Profile</span>
           </DropdownMenuItem>
+          {getSessionUser?.role === "student" && (
+            <>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={async () => {
+                  router.push(PathPJ.announcementSettings);
+                }}
+              >
+                <AtSign  />
+                <span>My announcement</span>
+              </DropdownMenuItem>
+            </>
+          )}
         </DropdownMenuGroup>
 
         <DropdownMenuSeparator />

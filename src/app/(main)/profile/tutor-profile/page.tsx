@@ -33,7 +33,6 @@ import { Spans } from "@/helpers/span-objects-profile";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { TeacherQuery } from "@/quaries";
-import { TeacherAuthQuery } from "@/quaries/teachers";
 import {
   ProfileTicherSchema,
   ProfileTicherSchemaType,
@@ -93,7 +92,7 @@ const ProfilePage = () => {
       return;
 
     try {
-      await TeacherAuthQuery(
+      await TeacherQuery(
         getSessionUser.session.access_token
       ).teachersPartialUpdate(getSessionUser.user.id, changedFields);
       await updateData();
@@ -103,7 +102,7 @@ const ProfilePage = () => {
         description: "Profile updated successfully.",
         variant: "default",
       });
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast({
         title: "Failed to update profile.",

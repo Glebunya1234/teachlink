@@ -23,7 +23,6 @@ import { Spans } from "@/helpers/span-objects-profile";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { StudentQuery } from "@/quaries";
-import { StudentAuthQuery } from "@/quaries/students";
 import {
   ProfileStudentSchema,
   ProfileStudentSchemaType,
@@ -74,7 +73,7 @@ const ProfileStudentPage = () => {
       return;
 
     try {
-      await StudentAuthQuery(
+      await StudentQuery(
         getSessionUser.session.access_token
       ).studentsPartialUpdate(getSessionUser.user.id, changedFields);
 

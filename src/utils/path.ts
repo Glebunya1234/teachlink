@@ -3,6 +3,7 @@ export const PathPJ = {
     tutorProfile: "/profile/tutor-profile/",
     studentProfile: "/profile/student-profile/",
     announcement: "/announcement",
+    announcementSettings: "/announcement-settings",
     tutors: "/tutors",
     user: "/user/",
     tutorsPagination: "/tutors/",

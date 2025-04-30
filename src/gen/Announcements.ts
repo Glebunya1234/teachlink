@@ -61,12 +61,12 @@ export class Announcements<SecurityDataType = unknown> extends HttpClient<Securi
    *
    * @tags Announcements
    * @name AnnouncementsListStudentDetail
-   * @request GET:/api/announcements/list/student/{id_student}
+   * @request GET:/api/announcements/list/student/{uid}
    * @secure
    */
-  announcementsListStudentDetail = (idStudent: string, params: RequestParams = {}) =>
-    this.request<AnnouncementDTO, ProblemDetails | void>({
-      path: `/api/announcements/list/student/${idStudent}`,
+  announcementsListStudentDetail = (uid: string, params: RequestParams = {}) =>
+    this.request<AnnouncementDTO[], ProblemDetails | void>({
+      path: `/api/announcements/list/student/${uid}`,
       method: "GET",
       secure: true,
       format: "json",

@@ -1,16 +1,16 @@
-import { Students } from "@/gen/Students"
+import { Announcements } from "@/gen/Announcements"
 import { PathPJ } from "@/utils/path"
 
-export const StudentQuery = (accessToken?: string): Students => {
+export const AnnouncementsQuery = (accessToken?: string): Announcements => {
     if (accessToken) {
-        return new Students({
+        return new Announcements({
             baseURL: PathPJ.baseURL,
             headers: {
                 Authorization: `Bearer ${accessToken}`,
             },
         });
     }
-    return new Students({
+    return new Announcements({
         baseURL: PathPJ.baseURL,
     });
 }

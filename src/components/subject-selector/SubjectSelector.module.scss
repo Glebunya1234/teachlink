@@ -1,0 +1,18 @@
+.SubjectSelector {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+
+    .SubjectSelector_List {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .SubjectSelector_Item {
+        display: flex;
+        justify-content: center;
+    }
+}
