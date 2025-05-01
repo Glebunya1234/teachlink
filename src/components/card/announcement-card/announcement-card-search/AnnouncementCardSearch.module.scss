@@ -1,40 +1,3 @@
-.AnnouncementCardSearch_SectorAvatar {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-
-
-    .SectorAvatar_Wrapper {
-        width: 100px;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-}
-
-.AnnouncementCard_MiniDesc {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-
-}
-
-.AnnouncementCard_Subject {
-
-    .Subject_List {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 5px;
-    }
-
-    .Subject_Item {
-        display: flex;
-        justify-content: center;
-    }
-
-}
-
 .AnnouncementCardSearch {
     display: flex;
     flex-direction: column;
@@ -53,5 +16,47 @@
         overflow: hidden;
         height: min-content;
         resize: none;
+    }
+    .AnnouncementCard_H2 {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: -.05em;
+    }
+
+    .AnnouncementCard_MiniDesc {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+
+    }
+
+    .AnnouncementCardSearch_SectorAvatar {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+
+        .SectorAvatar_Wrapper {
+            width: 100px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    }
+
+
+    .AnnouncementCard_Subject {
+
+        .Subject_List {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .Subject_Item {
+            display: flex;
+            justify-content: center;
+        }
+
     }
 }

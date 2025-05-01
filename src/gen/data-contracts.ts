@@ -87,7 +87,7 @@ export interface ExperienceDTO {
 export interface FullTeacherTileDTO {
   id: string;
   uid: string;
-  full_name?: string;
+  full_name: string;
   description?: string;
   mini_description?: string;
   school_subjects?: SchoolSubjectDTO[];
@@ -165,7 +165,7 @@ export enum SortByEnumMDB {
 export interface StudentDTO {
   id: string;
   uid: string;
-  full_name?: string;
+  full_name: string;
   city?: string;
   /** @format int32 */
   age?: number;
@@ -189,7 +189,7 @@ export interface SubjectDTO {
 export interface TeacherTileDTO {
   id: string;
   uid: string;
-  full_name?: string;
+  full_name: string;
   mini_description?: string;
   school_subjects?: SchoolSubjectDTO[];
   experience?: string;

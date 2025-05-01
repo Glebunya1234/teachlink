@@ -1,0 +1,12 @@
+.DetailPage {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 1400px;
+    width: 100%;
+    border-left: dashed 1px var(--border-dot);
+    border-right: dashed 1px var(--border-dot);
+    padding: 50px;
+    gap: 40px;
+    
+}
