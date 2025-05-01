@@ -6,6 +6,7 @@ import TeachersCard from "@/components/card/teachers-card/TeachersCard";
 import { PaginationComponent } from "@/components/pagination";
 import { SortByEnumMDB } from "@/gen/data-contracts";
 import { TeacherQuery } from "@/quaries";
+import { PathPJ } from "@/utils/path";
 
 interface Props {
   params: { id: number };
@@ -58,6 +59,8 @@ const tutorsIdPage: FC<Props> = async ({ params, searchParams }) => {
       ))}
       <PaginationComponent
         currentPage={Number(id)}
+        mainLink={PathPJ.tutors}
+        nextLink={PathPJ.tutorsPagination}
         hasNextPage={data.hasNextPage !== undefined ? data.hasNextPage : false}
       />
     </main>

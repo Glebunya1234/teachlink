@@ -1,0 +1,57 @@
+.AnnouncementCardSearch_SectorAvatar {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+
+    .SectorAvatar_Wrapper {
+        width: 100px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+}
+
+.AnnouncementCard_MiniDesc {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+
+}
+
+.AnnouncementCard_Subject {
+
+    .Subject_List {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .Subject_Item {
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+.AnnouncementCardSearch {
+    display: flex;
+    flex-direction: column;
+    height: min-content;
+    gap: 20px;
+    padding: 20px;
+    max-width: 580px;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--card-teacher-shadow);
+
+    textarea:disabled {
+        opacity: 1;
+        cursor: default;
+        border-color: none;
+        overflow: hidden;
+        height: min-content;
+        resize: none;
+    }
+}

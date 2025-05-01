@@ -2,9 +2,11 @@
 import { Loader2, Pencil } from "lucide-react";
 import { FC, useEffect, useRef, useState } from "react";
 
-import styles from "./AnnouncementCard.module.scss";
-import { useUpdateAnnouncement } from "./func";
+import { useRemoveAnnouncement, useUpdateAnnouncement } from "../func";
 
+import styles from "./AnnouncementCardEdit.module.scss";
+
+import { ConfirmDeleteAnnouncement } from "@/components/dialogs/ConfirmDeleteAnnouncement";
 import { SubjectSelector } from "@/components/subject-selector/SubjectSelector";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -29,7 +31,7 @@ interface AnnouncementCardProps {
   all_subjects?: SchoolSubjectDTO[];
   token?: string;
 }
-export const AnnouncementCard: FC<AnnouncementCardProps> = ({
+export const AnnouncementCardEdit: FC<AnnouncementCardProps> = ({
   announcement,
   announcement_index,
   user_id,
@@ -45,8 +47,8 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
     announcement.mini_description
   );
   const [descEditor, setDescEditor] = useState(announcement.description);
-  const [miniDesc] = useState(announcement.mini_description);
-  const [desc] = useState(announcement.description);
+  const [miniDesc, setMiniDesc] = useState(announcement.mini_description);
+  const [desc, setDesc] = useState(announcement.description);
 
   const [selectedSubjects, setSelectedSubjects] = useState<SchoolSubjectDTO[]>(
     []
@@ -54,6 +56,8 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
 
   useEffect(() => {
     setSelectedSubjects(announcement.school_subjects || []);
+    setDesc(announcement.description || "");
+    setMiniDesc(announcement.mini_description || "");
   }, [announcement]);
 
   useAutoResizeTextarea(minidescRef, miniDesc);
@@ -66,8 +70,12 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
     user_id,
     announcement_index,
   });
+  const mutationRemove = useRemoveAnnouncement({
+    token,
+    user_id,
+  });
 
-  const Save = (
+  const HandleSave = (
     mini_description: string,
     description: string,
     subjects: SchoolSubjectDTO[]
@@ -79,6 +87,11 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
         description: description,
         school_subjects: subjects,
       },
+    });
+  };
+  const HandleRemove = () => {
+    mutationRemove.mutate({
+      id: announcement.id,
     });
   };
 
@@ -145,7 +158,11 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
       <section className={styles.AnnouncementCard_Nav}>
         <Sheet>
           <SheetTrigger asChild>
-            <Button size={"icon"} variant={"outline"}>
+            <Button
+              size={"icon"}
+              variant={"secondary"}
+              className="border-[#26262618] border-[1px]"
+            >
               <Pencil size={16} strokeWidth={2} />
             </Button>
           </SheetTrigger>
@@ -206,7 +223,7 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
               <Button
                 className="w-full"
                 onClick={() => {
-                  Save(miniDescEditor, descEditor, selectedSubjects);
+                  HandleSave(miniDescEditor, descEditor, selectedSubjects);
                 }}
               >
                 {mutation.isPending ? (
@@ -220,6 +237,8 @@ export const AnnouncementCard: FC<AnnouncementCardProps> = ({
             </SheetFooter>
           </SheetContent>
         </Sheet>
+
+        <ConfirmDeleteAnnouncement onConfirm={HandleRemove} />
       </section>
     </div>
   );

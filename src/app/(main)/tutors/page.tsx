@@ -6,6 +6,7 @@ import TeachersCard from "@/components/card/teachers-card/TeachersCard";
 import { PaginationComponent } from "@/components/pagination";
 import { SortByEnumMDB } from "@/gen/data-contracts";
 import { TeacherQuery } from "@/quaries";
+import { PathPJ } from "@/utils/path";
 interface Props {
   // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -51,6 +52,8 @@ const TutorsPage: FC<Props> = async ({ searchParams }) => {
       ))}
       <PaginationComponent
         currentPage={1}
+        mainLink={PathPJ.tutors}
+        nextLink={PathPJ.tutorsPagination}
         hasNextPage={data.hasNextPage !== undefined ? data.hasNextPage : false}
       />
     </main>

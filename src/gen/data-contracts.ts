@@ -21,6 +21,13 @@ export interface AnnouncementDTO {
   updatedAt: Date;
 }
 
+export interface AnnouncementDTOPaginationResponse {
+  items?: AnnouncementDTO[];
+  hasNextPage?: boolean;
+  /** @format int32 */
+  totalCount?: number;
+}
+
 export interface AuthDTO {
   isStudent: boolean;
   isTeacher: boolean;
@@ -192,6 +199,7 @@ export interface TeacherTileDTO {
   /** @format int32 */
   price?: number;
   show_info?: boolean;
+  phone_number: string;
   city?: string;
   /** @format int32 */
   age?: number;

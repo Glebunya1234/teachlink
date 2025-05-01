@@ -1,13 +1,15 @@
 .AnnouncementPage {
     display: flex;
+    position: relative;
     flex-direction: column;
     max-width: 1400px;
     width: 100%;
-    padding: 20px;
+
     border-left: dashed 1px var(--border-dot);
     border-right: dashed 1px var(--border-dot);
     padding: 50px 100px;
     gap: 10px;
+
 
     .AnnouncementPage__List {
         display: flex;
@@ -33,4 +35,16 @@
         letter-spacing: -.05em;
     }
 
+}
+
+.AnnouncementPage__Loader {
+    max-width: 1400px;
+    width: 100%;
+    height: 100svh;
+    margin-top: -60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: dashed 1px var(--border-dot);
+    border-right: dashed 1px var(--border-dot);
 }

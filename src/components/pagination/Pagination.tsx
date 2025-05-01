@@ -11,16 +11,18 @@ import {
   PaginationPrevious,
 } from "../ui/pagination";
 
-import { PathPJ } from "@/utils/path";
-
 interface PaginationDemoProps {
   hasNextPage: boolean;
   currentPage: number;
+  mainLink: string;
+  nextLink: string;
 }
 
 export const PaginationComponent: FC<PaginationDemoProps> = ({
   hasNextPage,
   currentPage,
+  mainLink,
+  nextLink,
 }) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -29,12 +31,11 @@ export const PaginationComponent: FC<PaginationDemoProps> = ({
     const params = new URLSearchParams(searchParams.toString());
 
     const queryString = params.toString();
-    const path =
-      page === 1 ? PathPJ.tutors : `${PathPJ.tutorsPagination}${page}`;
+    const path = page === 1 ? mainLink : `${nextLink}${page}`;
     return queryString ? `${path}?${queryString}` : path;
   };
 
-  const isFirstPage = pathname === PathPJ.tutors;
+  const isFirstPage = pathname === mainLink;
 
   const renderPageLinks = () => {
     const links = [];

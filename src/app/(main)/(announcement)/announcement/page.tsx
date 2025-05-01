@@ -1,12 +1,34 @@
-"use client";
+import Link from "next/link";
 import React from "react";
 
-const AnnouncementPage = () => {
+import styles from "../announcement.module.scss";
+
+import { AnnouncementCardSearch } from "@/components/card/announcement-card/announcement-card-search/AnnouncementCardSearch";
+import { PaginationComponent } from "@/components/pagination";
+import { AnnouncementsQuery } from "@/quaries";
+import { PathPJ } from "@/utils/path";
+
+const AnnouncementPage = async () => {
+  const { data } = await AnnouncementsQuery().announcementsList();
   return (
-    <div>
+    <div className={styles.AnnouncementPage}>
       <h1>Announcement</h1>
       <p>Here you can find all the announcements related to your account.</p>
-      <p>Stay tuned for updates!</p>
+      <section className={styles.AnnouncementPage__List}>
+        {data.items?.map((item, index) => (
+          <AnnouncementCardSearch
+            key={item.id}
+            announcement_index={index + 1}
+            announcement={item}
+          />
+        ))}
+      </section>
+      <PaginationComponent
+        currentPage={1}
+        mainLink={PathPJ.announcement}
+        nextLink={PathPJ.announcementPagination}
+        hasNextPage={data.hasNextPage !== undefined ? data.hasNextPage : false}
+      />
     </div>
   );
 };
