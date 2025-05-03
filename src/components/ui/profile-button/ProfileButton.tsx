@@ -35,7 +35,7 @@ const ProfileButton = () => {
           <p>{getSessionUser?.currentUser?.full_name}</p>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56">
+      <DropdownMenuContent side="bottom" className="w-56">
         <DropdownMenuLabel>My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
@@ -67,7 +67,7 @@ const ProfileButton = () => {
                   router.push(PathPJ.announcementSettings);
                 }}
               >
-                <AtSign  />
+                <AtSign />
                 <span>My announcement</span>
               </DropdownMenuItem>
             </>

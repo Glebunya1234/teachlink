@@ -3,14 +3,16 @@
     display: flex;
     justify-content: center;
     border-bottom: dashed 1px var(--border-dot);
-
-
+    position: fixed;
+    backdrop-filter: blur(10px);
+    background-color: var(--blur-color-header);
+    z-index: 10;
 
     .Header__container_wrapper {
         display: flex;
         width: 100%;
         height: 56px;
-        max-width: 1400px;
+        max-width: var(--page-maxsize);
         align-items: center;
         justify-content: space-between;
         flex-direction: row;

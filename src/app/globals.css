@@ -63,11 +63,16 @@
     --secondary-text-profile: #535358;
     --border-dot: #e4e5e6;
 
+    --blur-color-header: #ffffffa2;
+
     --page-maxsize: 1400px;
 
     --card-teacher-shadow: #0000001a;
   }
   .dark {
+
+    --blur-color-header: #0a0a0ae8;
+
     --page-maxsize: 1400px;
 
     --visible-sun: block;

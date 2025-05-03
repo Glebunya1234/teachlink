@@ -16,26 +16,28 @@ const TeacherFilters = async ({
 }: Readonly<{ children: React.ReactNode }>) => {
   const { data: subjects } = await SubjectQuery().subjectsList();
   return (
-    <div className={styles.TeacherFilters}>
-      <section className={styles.TeacherFilters_WrapperFilters}>
-        <h3>Subjects</h3>
-        <SubjectCheckboxes subjects={subjects} />
-        <Separator />
-        <h3>Training format</h3>
-        <OnlineCheckbox />
-        <Separator />
+    <div className={styles.TeacherFilters_Container}>
+      <div className={styles.TeacherFilters_Wrapper}>
+        <section className={styles.TeacherFilters_WrapperFilters}>
+          <h3>Subjects</h3>
+          <SubjectCheckboxes subjects={subjects} />
+          <Separator />
+          <h3>Training format</h3>
+          <OnlineCheckbox />
+          <Separator />
 
-        <h3>Sort by city</h3>
-        <CityInput />
-        <Separator />
+          <h3>Sort by city</h3>
+          <CityInput />
+          <Separator />
 
-        <h3>Sort by price</h3>
-        <PriceRangeInput />
-        <Separator />
+          <h3>Sort by price</h3>
+          <PriceRangeInput />
+          <Separator />
 
-        <h3>Sorting method</h3>
-        <SortCombobox />
-      </section>
+          <h3>Sorting method</h3>
+          <SortCombobox />
+        </section>
+      </div>
 
       {children}
     </div>

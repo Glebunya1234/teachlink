@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 
 import Header from "@/components/header";
+import HeaderFooterWrapper from "@/components/header-footer-wrapper/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { QuaryClientProvider } from "@/provider/QueryProvider/QuaryClientProvider";
@@ -43,7 +44,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <Header>{children}</Header>
+              <HeaderFooterWrapper>{children}</HeaderFooterWrapper>
             </ThemeProvider>
             <Toaster />
           </QuaryClientProvider>

@@ -7,29 +7,9 @@ import ThemeSwitcher from "../ui/theme-switcher/ThemeSwitcher";
 
 import styles from "./header.module.scss";
 
-import stylepages from "@/app/main.module.scss";
-import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { PathPJ } from "@/utils/path";
-import { createClient } from "@/utils/supabase/client";
 
-const Header = ({ children }: Readonly<{ children: React.ReactNode }>) => {
-  const { setSessionUser, updateData } = useAuthStore((state) => state);
-
-  useEffect(() => {
-    const supabase = createClient();
-    const { data } = supabase.auth.onAuthStateChange(async (_, session) => {
-      if (!session) {
-        setSessionUser(null);
-      }
-    });
-
-    updateData();
-
-    return () => {
-      data.subscription.unsubscribe();
-    };
-  }, []);
-
+const Header = () => {
   return (
     <div>
       <header className={styles.Header}>
@@ -49,7 +29,6 @@ const Header = ({ children }: Readonly<{ children: React.ReactNode }>) => {
           <SessionActionComponent />
         </div>
       </header>
-      <main className={stylepages.page}> {children}</main>
     </div>
   );
 };
