@@ -90,6 +90,11 @@ export const ContactComponent: FC<Props> = ({
       setSending(false);
     }
   };
+  if (
+    user_id == contact_id ||
+    (for_teacher === true && getSessionUser?.role === "tutors")
+  )
+    return null;
   return (
     <div className={styles.ContactComponent}>
       <div>

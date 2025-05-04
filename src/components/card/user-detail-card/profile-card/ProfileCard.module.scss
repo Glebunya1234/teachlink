@@ -1,0 +1,67 @@
+.ProfileCard {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    gap: 20px;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--card-teacher-shadow);
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -.05em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .SpanIcon {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 14px;
+    }
+
+    .ProfileCard__Avatar {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        .Avatar__Wrapper {
+            width: 130px;
+            border-radius: 10px;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            position: relative;
+        }
+    }
+
+    .SectorDesc__NameWrapper {
+        display: flex;
+
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .ProfileCard__SectorDesc {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .SectorDesc__StatWrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+        }
+    }
+
+    .ProfileCard__SectorConnect {
+        margin-left: auto;
+        max-width: 200px;
+        width: 100%;
+    }
+}

@@ -1,0 +1,61 @@
+.EditCreateCard {
+
+    textarea {
+        overflow: hidden;
+        height: min-content;
+    }
+
+
+
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border-dot);
+    background-color: var(--card-teacher-background);
+
+    .Review__Wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .Review__StarWrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        align-items: center;
+    }
+
+    .Review__Date {
+        margin-left: auto;
+    }
+
+    .Review__Subject {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .Review__ButtonWrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    h2 {
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -.05em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+}

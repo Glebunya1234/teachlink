@@ -28,7 +28,7 @@ export const SexInputForm: FC<Props> = ({ form, styles, sex }) => {
   return (
     <>
       <Label className={styles.ProfilePage_Span} htmlFor="sex">
-        Sex:
+        Gender:
       </Label>
 
       <FormField

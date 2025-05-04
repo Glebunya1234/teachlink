@@ -100,7 +100,7 @@ export interface FullTeacherTileDTO {
   /** @format int32 */
   age?: number;
   sex?: string;
-  online?: boolean;
+  online: boolean;
   show_info: boolean;
   /** @format int32 */
   price?: number;
@@ -149,6 +149,13 @@ export interface ReviewDTO {
   createdAt: Date;
   /** @format date-time */
   updatedAt: Date;
+}
+
+export interface ReviewDTOPaginationResponse {
+  items?: ReviewDTO[];
+  hasNextPage?: boolean;
+  /** @format int32 */
+  totalCount?: number;
 }
 
 export interface SchoolSubjectDTO {

@@ -1,0 +1,43 @@
+.DetailInfoCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 5px;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--card-teacher-shadow);
+    flex-wrap: wrap;
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -.05em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    textarea:disabled {
+        opacity: 1;
+        cursor: default;
+        border-color: none;
+        overflow: hidden;
+        height: min-content;
+        resize: none;
+        margin-bottom: 5px;
+    }
+
+    .DetailInfoCard__Wrapper {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+
+        span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+}

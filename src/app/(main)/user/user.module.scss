@@ -1,0 +1,22 @@
+.UserPage {
+    display: flex;
+    flex-direction: column;
+    max-width: 1400px;
+    width: 100%;
+    align-items: center;
+    border-left: dashed 1px var(--border-dot);
+    border-right: dashed 1px var(--border-dot);
+    padding: 50px 100px;
+    gap: 10px;
+
+    .UserPage__ProfileWrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        gap: 10px;
+    }
+
+
+
+}
