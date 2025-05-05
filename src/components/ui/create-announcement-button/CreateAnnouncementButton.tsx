@@ -16,7 +16,7 @@ import { Textarea } from "../textarea";
 import styles from "./CreateAnnouncementButton.module.scss";
 
 import { useCreateAnnouncement } from "@/components/card/announcement-card/func";
-import { SubjectSelector } from "@/components/subject-selector/SubjectSelector";
+import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelector";
 import { SchoolSubjectDTO } from "@/gen/data-contracts";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
 interface AnnouncementCardProps {

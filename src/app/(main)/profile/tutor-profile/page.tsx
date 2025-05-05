@@ -58,12 +58,10 @@ const ProfilePage = () => {
       sex: "",
     },
   });
-
   const { getSessionUser, updateData } = useAuthStore((state) => state);
+  const userId = getSessionUser?.user?.id;
   const { toast } = useToast();
   const TeacherFunc = () => {
-    const userId = getSessionUser?.user?.id;
-
     if (!userId) {
       throw new Error("User ID is missing");
     }

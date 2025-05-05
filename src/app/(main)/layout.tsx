@@ -8,6 +8,7 @@ import Header from "@/components/header";
 import HeaderFooterWrapper from "@/components/header-footer-wrapper/header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { NotificationStoreProvider } from "@/provider/Notification-Provider/notification-provider";
 import { QuaryClientProvider } from "@/provider/QueryProvider/QuaryClientProvider";
 import { AuthStoreProvider } from "@/provider/Store-Provider/auth-provider";
 
@@ -37,17 +38,19 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <AuthStoreProvider>
-          <QuaryClientProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <HeaderFooterWrapper>{children}</HeaderFooterWrapper>
-            </ThemeProvider>
-            <Toaster />
-          </QuaryClientProvider>
+          <NotificationStoreProvider>
+            <QuaryClientProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+              >
+                <HeaderFooterWrapper>{children}</HeaderFooterWrapper>
+              </ThemeProvider>
+              <Toaster />
+            </QuaryClientProvider>
+          </NotificationStoreProvider>
         </AuthStoreProvider>
       </body>
     </html>

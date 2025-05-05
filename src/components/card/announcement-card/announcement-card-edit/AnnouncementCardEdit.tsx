@@ -7,7 +7,7 @@ import { useRemoveAnnouncement, useUpdateAnnouncement } from "../func";
 import styles from "./AnnouncementCardEdit.module.scss";
 
 import { ConfirmDeleteAnnouncement } from "@/components/dialogs/ConfirmDeleteAnnouncement";
-import { SubjectSelector } from "@/components/subject-selector/SubjectSelector";
+import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelector";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";

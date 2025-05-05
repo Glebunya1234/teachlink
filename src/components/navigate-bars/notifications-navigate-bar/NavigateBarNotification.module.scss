@@ -1,0 +1,12 @@
+.NavigateBarNotification {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    width: 100%;
+    max-height: min-content;
+    gap: 5px;
+
+    button {
+        justify-content: left;
+    }
+}
