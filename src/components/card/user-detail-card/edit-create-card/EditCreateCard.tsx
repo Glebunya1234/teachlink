@@ -4,9 +4,9 @@ import { FC, useEffect, useRef, useState } from "react";
 
 import styles from "./EditCreateCard.module.scss";
 
-import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelector";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelector";
 import { Textarea } from "@/components/ui/textarea";
 import { SchoolSubjectDTO } from "@/gen/data-contracts";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
