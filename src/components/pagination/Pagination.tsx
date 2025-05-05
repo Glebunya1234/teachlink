@@ -71,7 +71,7 @@ export const PaginationComponent: FC<PaginationDemoProps> = ({
   };
 
   return (
-    <Pagination>
+    <Pagination className="mt-auto">
       <PaginationContent>
         <PaginationItem>
           <PaginationPrevious
