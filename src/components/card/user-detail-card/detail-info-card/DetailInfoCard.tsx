@@ -32,11 +32,12 @@ export const DetailInfoCard: FC<Props> = ({
       <h2>Information about yourself</h2>
       <Textarea
         placeholder="Description announcement."
-        value={description}
+        value={desc}
         ref={descRef}
         disabled
         readOnly
       />
+      
       <div className={styles.DetailInfoCard__Wrapper}>
         <span>Education:</span>
         <span>{educational_institution}</span>
