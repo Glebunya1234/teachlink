@@ -58,11 +58,13 @@ export interface CreateReviewDTO {
 
 export interface CreateStudentDTO {
   full_name: string;
+  email: string;
   uid: string;
 }
 
 export interface CreateTeacherDTO {
   full_name: string;
+  email: string;
   uid: string;
 }
 
@@ -88,6 +90,7 @@ export interface FullTeacherTileDTO {
   id: string;
   uid: string;
   full_name: string;
+  email: string;
   description?: string;
   mini_description?: string;
   school_subjects?: SchoolSubjectDTO[];
@@ -173,6 +176,7 @@ export interface StudentDTO {
   id: string;
   uid: string;
   full_name: string;
+  email: string;
   city?: string;
   /** @format int32 */
   age?: number;
@@ -197,6 +201,7 @@ export interface TeacherTileDTO {
   id: string;
   uid: string;
   full_name: string;
+  email: string;
   mini_description?: string;
   school_subjects?: SchoolSubjectDTO[];
   experience?: string;

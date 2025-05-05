@@ -25,7 +25,7 @@ export const signUpUserPassword = async (username: string, email: string, passwo
         email: email,
         password: password,
     })
-    if (result.data.user === null) {
+    if (result.data.user === null || !result.data.user.email) {
         return result;
     }
     if (isTeacher == "teacher") {
@@ -36,6 +36,7 @@ export const signUpUserPassword = async (username: string, email: string, passwo
             },
         }).teachersCreate({
             uid: result.data.user.id,
+            email: result.data.user.email,
             full_name: username,
         });
     }
@@ -47,6 +48,7 @@ export const signUpUserPassword = async (username: string, email: string, passwo
             },
         }).studentsCreate({
             uid: result.data.user.id,
+            email: result.data.user.email,
             full_name: username,
         });
     }

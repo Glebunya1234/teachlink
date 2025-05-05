@@ -1,3 +1,4 @@
+"use client";
 import { Mail, MailOpen, Mails } from "lucide-react";
 import { FC } from "react";
 
