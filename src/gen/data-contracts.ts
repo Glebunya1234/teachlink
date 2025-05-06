@@ -242,6 +242,11 @@ export interface UpdateNotificationDTO {
   is_read?: boolean;
 }
 
+export interface UpdateNotificationListDTO {
+  ids: string[];
+  is_read: boolean;
+}
+
 export interface UpdateReviewDTO {
   reviews_text?: string;
   school_subjects?: SchoolSubjectDTO[];

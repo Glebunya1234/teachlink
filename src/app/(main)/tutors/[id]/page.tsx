@@ -9,9 +9,8 @@ import { TeacherQuery } from "@/quaries";
 import { PathPJ } from "@/utils/path";
 
 interface Props {
-  params: { id: number };
-  // eslint-disable-next-line @typescript-eslint/consistent-indexed-object-style
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
+  params: Promise<{ id: number }>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }
 
 const tutorsIdPage: FC<Props> = async ({ params, searchParams }) => {

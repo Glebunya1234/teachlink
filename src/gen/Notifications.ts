@@ -14,7 +14,7 @@ import {
   NotificationDTO,
   ProblemDetails,
   UpdateNotificationDTO,
-  UpdateReviewDTO,
+  UpdateNotificationListDTO,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
@@ -64,14 +64,20 @@ export class Notifications<SecurityDataType = unknown> extends HttpClient<Securi
    * No description
    *
    * @tags Notifications
-   * @name NotificationsDetail
-   * @request GET:/api/notifications/{id}
+   * @name NotificationsIdList
+   * @request GET:/api/notifications/id
    * @secure
    */
-  notificationsDetail = (id: string, params: RequestParams = {}) =>
+  notificationsIdList = (
+    query: {
+      id: string;
+    },
+    params: RequestParams = {},
+  ) =>
     this.request<NotificationDTO, ProblemDetails | void>({
-      path: `/api/notifications/${id}`,
+      path: `/api/notifications/id`,
       method: "GET",
+      query: query,
       secure: true,
       format: "json",
       ...params,
@@ -80,13 +86,38 @@ export class Notifications<SecurityDataType = unknown> extends HttpClient<Securi
    * No description
    *
    * @tags Notifications
-   * @name NotificationsPartialUpdate
-   * @request PATCH:/api/notifications/{id}
+   * @name NotificationsIdPartialUpdate
+   * @request PATCH:/api/notifications/id
    * @secure
    */
-  notificationsPartialUpdate = (id: string, data: UpdateNotificationDTO, params: RequestParams = {}) =>
-    this.request<UpdateReviewDTO, ProblemDetails | void>({
-      path: `/api/notifications/${id}`,
+  notificationsIdPartialUpdate = (
+    query: {
+      id: string;
+    },
+    data: UpdateNotificationDTO,
+    params: RequestParams = {},
+  ) =>
+    this.request<UpdateNotificationDTO, ProblemDetails | void>({
+      path: `/api/notifications/id`,
+      method: "PATCH",
+      query: query,
+      body: data,
+      secure: true,
+      type: ContentType.Json,
+      format: "json",
+      ...params,
+    });
+  /**
+   * No description
+   *
+   * @tags Notifications
+   * @name NotificationsIdsPartialUpdate
+   * @request PATCH:/api/notifications/ids
+   * @secure
+   */
+  notificationsIdsPartialUpdate = (data: UpdateNotificationListDTO, params: RequestParams = {}) =>
+    this.request<UpdateNotificationListDTO, ProblemDetails | void>({
+      path: `/api/notifications/ids`,
       method: "PATCH",
       body: data,
       secure: true,
