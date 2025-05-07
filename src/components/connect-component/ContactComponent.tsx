@@ -92,7 +92,8 @@ export const ContactComponent: FC<Props> = ({
   };
   if (
     user_id == contact_id ||
-    (for_teacher === true && getSessionUser?.role === "tutors")
+    (for_teacher === true && getSessionUser?.role === "tutors") ||
+    (for_teacher === false && getSessionUser?.role === "student")
   )
     return null;
   return (

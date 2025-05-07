@@ -1,6 +1,9 @@
+/* eslint-disable no-console */
+
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Star } from "lucide-react";
+import { Loader2, Star } from "lucide-react";
 import { FC, useEffect, useRef, useState } from "react";
+import { set } from "react-hook-form";
 
 import styles from "./EditCreateCard.module.scss";
 
@@ -10,6 +13,7 @@ import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelecto
 import { Textarea } from "@/components/ui/textarea";
 import { SchoolSubjectDTO } from "@/gen/data-contracts";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
+import { useToast } from "@/hooks/use-toast";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { ReviewQuery } from "@/quaries/review";
 
@@ -24,9 +28,11 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
 }) => {
   const queryClient = useQueryClient();
   const { getSessionUser } = useAuthStore((state) => state);
+  const { toast } = useToast();
   const userId = getSessionUser?.user?.id;
   const userToken = getSessionUser?.session?.access_token;
 
+  const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState<number>(0);
   const [EditReview, setEditReview] = useState<string | undefined>();
   const [selectedSubjects, setSelectedSubjects] = useState<SchoolSubjectDTO[]>(
@@ -55,29 +61,52 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
   }, [userReviews]);
 
   const updateUserReviews = async () => {
-    if (!teacher_id || !userId || !userReviews)
-      throw new Error("Teacher ID is missing");
-    const res = await ReviewQuery(userToken).reviewsPartialUpdate(
-      userReviews.id,
-      {
-        rating: rating,
-        reviews_text: EditReview,
-        school_subjects: selectedSubjects,
-      }
-    );
-    return res.data;
+    if (!teacher_id || !userId || !userReviews) {
+      toast({
+        title: "Error",
+        duration: 2000,
+        description: "Failed to update review",
+        variant: "destructive",
+      });
+      return;
+    }
+    try {
+      setLoading(true);
+
+      const res = await ReviewQuery(userToken).reviewsPartialUpdate(
+        userReviews.id,
+        {
+          rating: rating,
+          reviews_text: EditReview,
+          school_subjects: selectedSubjects,
+        }
+      );
+
+      return res.data;
+    } catch (error) {
+      console.log("first", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const createUserReviews = async () => {
     if (!teacher_id || !userId) throw new Error("Teacher ID is missing");
-    const res = await ReviewQuery(userToken).reviewsCreate({
-      id_teacher: teacher_id,
-      id_student: userId,
-      rating: rating,
-      reviews_text: EditReview ?? "",
-      school_subjects: selectedSubjects,
-    });
-    return res.data;
+    try {
+      setLoading(true);
+      const res = await ReviewQuery(userToken).reviewsCreate({
+        id_teacher: teacher_id,
+        id_student: userId,
+        rating: rating,
+        reviews_text: EditReview ?? "",
+        school_subjects: selectedSubjects,
+      });
+      return res.data;
+    } catch (error) {
+      console.log("second", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const toggleSubject = (subjectName: string) => {
@@ -108,6 +137,7 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
   };
 
   const buttonText = isNewReview ? "Create review" : "Update review";
+  const loadingText = isNewReview ? "Creating..." : "Updating...";
 
   return (
     <>
@@ -156,7 +186,13 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
           </div>
 
           <Button variant="secondary" onClick={handleClick}>
-            {buttonText}
+            {loading ? (
+              <>
+                <Loader2 className="animate-spin" /> {loadingText}
+              </>
+            ) : (
+              `${buttonText}`
+            )}
           </Button>
         </div>
       </div>
