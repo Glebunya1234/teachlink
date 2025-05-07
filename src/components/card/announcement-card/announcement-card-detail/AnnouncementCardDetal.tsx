@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 import styles from "./AnnouncementCardDetal.module.scss";
 
@@ -14,9 +14,6 @@ interface Props {
 }
 
 export const AnnouncementCardDetal: FC<Props> = ({ announcement }) => {
-  const [miniDesc] = useState(announcement.mini_description);
-  const [desc] = useState(announcement.description);
-
   return (
     <div className={styles.AnnouncementCardDetail}>
       <section className={styles.AnnouncementCardDetail_SectorAvatar}>
@@ -63,7 +60,9 @@ export const AnnouncementCardDetal: FC<Props> = ({ announcement }) => {
           Short information announcement.
         </h2>
 
-        <p className={styles.AnnouncementCardDetail__Description}>{miniDesc}</p>
+        <p className={styles.AnnouncementCardDetail__Description}>
+          {announcement.mini_description}
+        </p>
       </section>
       <Separator />
       <section className={styles.AnnouncementCardDetail_Desc}>
@@ -71,7 +70,9 @@ export const AnnouncementCardDetal: FC<Props> = ({ announcement }) => {
           Detail description announcement.
         </h2>
 
-        <p className={styles.AnnouncementCardDetail__Description}>{desc}</p>
+        <p className={styles.AnnouncementCardDetail__Description}>
+          {announcement.description}
+        </p>
       </section>
     </div>
   );

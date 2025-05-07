@@ -1,0 +1,17 @@
+.Editor {
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+
+    .Editor_Section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .Editor_Footer {
+        margin-top: auto;
+    }
+}
