@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Textarea } from "@/components/ui/textarea";
 import { useNotificationBarStore } from "@/provider/Notification-Provider/notification-provider";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { NotificationQuery } from "@/quaries/notifications";
@@ -165,16 +164,13 @@ export const NotificationDashboard: FC = () => {
               </div>
             </div>
             <AccordionContent className={styles.AccordionContent}>
-              <Textarea
-                value={getNotificationMessage(
+              <p className={styles.NotificationDashboard_Desc}>
+                {getNotificationMessage(
                   role,
                   user?.currentUser?.full_name,
                   notification
                 )}
-                readOnly
-                disabled
-                placeholder="Description"
-              />
+              </p>
             </AccordionContent>
           </AccordionItem>
         ))}

@@ -9,14 +9,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px var(--card-teacher-shadow);
 
-    textarea:disabled {
-        opacity: 1;
-        cursor: default;
-        border-color: none;
-        overflow: hidden;
-        height: min-content;
-        resize: none;
-    }
+
     .AnnouncementCard_H2 {
         font-size: 16px;
         font-weight: 600;
@@ -29,6 +22,16 @@
         gap: 10px;
 
 
+    }
+
+    .AnnouncementCard_Desc {
+        width: 100%;
+        white-space: pre-wrap;
+        border-radius: 5px;
+        font-size: 14px;
+        border: var(--border-dot) 1px solid;
+        padding: 10px;
+        margin-bottom: 5px;
     }
 
     .AnnouncementCardSearch_SectorAvatar {

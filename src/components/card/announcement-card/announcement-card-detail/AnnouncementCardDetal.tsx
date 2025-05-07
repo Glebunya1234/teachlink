@@ -1,29 +1,22 @@
 "use client";
 import Image from "next/image";
-import React, { FC, useRef, useState } from "react";
+import React, { FC, useState } from "react";
 
 import styles from "./AnnouncementCardDetal.module.scss";
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
 import { AnnouncementDTO } from "@/gen/data-contracts";
-import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
 
 interface Props {
   announcement: AnnouncementDTO;
 }
 
 export const AnnouncementCardDetal: FC<Props> = ({ announcement }) => {
-  const minidescRef = useRef<HTMLTextAreaElement | null>(null);
-
-  const descRef = useRef<HTMLTextAreaElement | null>(null);
-
   const [miniDesc] = useState(announcement.mini_description);
   const [desc] = useState(announcement.description);
-  useAutoResizeTextarea(descRef, desc);
-  useAutoResizeTextarea(minidescRef, miniDesc);
+
   return (
     <div className={styles.AnnouncementCardDetail}>
       <section className={styles.AnnouncementCardDetail_SectorAvatar}>
@@ -69,26 +62,16 @@ export const AnnouncementCardDetal: FC<Props> = ({ announcement }) => {
         <h2 className={styles.AnnouncementCardDetail_H2}>
           Short information announcement.
         </h2>
-        <Textarea
-          ref={minidescRef}
-          placeholder="Short information announcement."
-          disabled
-          value={miniDesc}
-          readOnly
-        />
+
+        <p className={styles.AnnouncementCardDetail__Description}>{miniDesc}</p>
       </section>
       <Separator />
       <section className={styles.AnnouncementCardDetail_Desc}>
         <h2 className={styles.AnnouncementCardDetail_H2}>
           Detail description announcement.
         </h2>
-        <Textarea
-          placeholder="Description announcement."
-          value={desc}
-          ref={descRef}
-          disabled
-          readOnly
-        />
+
+        <p className={styles.AnnouncementCardDetail__Description}>{desc}</p>
       </section>
     </div>
   );

@@ -20,7 +20,15 @@
         border-bottom: 1px solid var(--border-dot);
     }
 
-
+    .AnnouncementCard_DescText {
+        width: 100%;
+        white-space: pre-wrap;
+        border-radius: 5px;
+        font-size: 14px;
+        border: var(--border-dot) 1px solid;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
 
     .AnnouncementCard_Nav {
         width: 100%;

@@ -2,16 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { FC, useRef, useState } from "react";
+import { FC } from "react";
 
 import styles from "./AnnouncementCardSearch.module.scss";
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
 import { AnnouncementDTO, SchoolSubjectDTO } from "@/gen/data-contracts";
-import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
 import { PathPJ } from "@/utils/path";
 
 interface AnnouncementCardProps {
@@ -25,10 +23,6 @@ export const AnnouncementCardSearch: FC<AnnouncementCardProps> = ({
   announcement,
   announcement_index,
 }) => {
-  const minidescRef = useRef<HTMLTextAreaElement | null>(null);
-  const [miniDesc] = useState(announcement.mini_description);
-  useAutoResizeTextarea(minidescRef, miniDesc);
-
   return (
     <Link
       className={styles.AnnouncementCardSearch}
@@ -49,7 +43,7 @@ export const AnnouncementCardSearch: FC<AnnouncementCardProps> = ({
           <h2 className={styles.AnnouncementCard_H2}>
             Announcement {announcement_index}
           </h2>
-          <p className={styles.AnnouncementCard_Desc}>
+          <p className={styles.AnnouncementCard__Name}>
             {announcement.id_students.full_name}
           </p>
           <p>{announcement.id_students.city}</p>
@@ -75,13 +69,10 @@ export const AnnouncementCardSearch: FC<AnnouncementCardProps> = ({
         <h2 className={styles.AnnouncementCard_H2}>
           Short information announcement.
         </h2>
-        <Textarea
-          ref={minidescRef}
-          placeholder="Short information announcement."
-          disabled
-          value={miniDesc}
-          readOnly
-        />
+
+        <p className={styles.AnnouncementCard_Desc}>
+          {announcement.mini_description}
+        </p>
       </section>
     </Link>
   );

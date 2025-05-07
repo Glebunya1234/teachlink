@@ -10,7 +10,6 @@ import styles from "./ReviewCard.module.scss";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { SchoolSubjectDTO } from "@/gen/data-contracts";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { ReviewQuery } from "@/quaries/review";
@@ -106,16 +105,7 @@ export const ReviewCard: FC<ReviewCardProps> = ({ teacher_subjects }) => {
               </Badge>
             ))}
           </div>
-
-          <Textarea
-            placeholder="Description review."
-            value={item.reviews_text}
-            ref={(el) => {
-              descRefs.current[index] = el;
-            }}
-            disabled
-            readOnly
-          />
+          <p className={styles.Review__Desc}>{item.reviews_text}</p>
         </div>
       ))}
 

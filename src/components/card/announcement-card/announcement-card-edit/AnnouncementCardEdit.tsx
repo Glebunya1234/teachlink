@@ -7,7 +7,6 @@ import { useRemoveAnnouncement, useUpdateAnnouncement } from "../func";
 import styles from "./AnnouncementCardEdit.module.scss";
 
 import { ConfirmDeleteAnnouncement } from "@/components/dialogs/ConfirmDeleteAnnouncement";
-import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelector";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -20,6 +19,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelector";
 import { Textarea } from "@/components/ui/textarea";
 import { AnnouncementDTO, SchoolSubjectDTO } from "@/gen/data-contracts";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
@@ -38,8 +38,6 @@ export const AnnouncementCardEdit: FC<AnnouncementCardProps> = ({
   all_subjects,
   token,
 }) => {
-  const descRef = useRef<HTMLTextAreaElement | null>(null);
-  const minidescRef = useRef<HTMLTextAreaElement | null>(null);
   const miniDescEditorRef = useRef<HTMLTextAreaElement | null>(null);
   const descEditorRef = useRef<HTMLTextAreaElement | null>(null);
 
@@ -60,8 +58,6 @@ export const AnnouncementCardEdit: FC<AnnouncementCardProps> = ({
     setMiniDesc(announcement.mini_description || "");
   }, [announcement]);
 
-  useAutoResizeTextarea(minidescRef, miniDesc);
-  useAutoResizeTextarea(descRef, desc);
   useAutoResizeTextarea(miniDescEditorRef, miniDescEditor);
   useAutoResizeTextarea(descEditorRef, descEditor);
 
@@ -133,26 +129,15 @@ export const AnnouncementCardEdit: FC<AnnouncementCardProps> = ({
           Short information announcement.
         </h2>
 
-        <Textarea
-          ref={minidescRef}
-          placeholder="Short information announcement."
-          className="min-h-[50px] h-auto  overflow-hidden"
-          value={miniDesc}
-          readOnly
-        />
+        <p className={styles.AnnouncementCard_DescText}>{miniDesc}</p>
       </section>
       <Separator />
       <section className={styles.AnnouncementCard_Desc}>
         <h2 className={styles.AnnouncementCard_H2}>
           Detail description announcement.
         </h2>
-        <Textarea
-          placeholder="Description announcement."
-          className="min-h-[200px] h-auto  overflow-hidden"
-          value={desc}
-          ref={descRef}
-          readOnly
-        />
+
+        <p className={styles.AnnouncementCard_DescText}>{desc}</p>
       </section>
 
       <section className={styles.AnnouncementCard_Nav}>

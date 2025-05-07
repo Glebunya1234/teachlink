@@ -9,19 +9,22 @@
     border-radius: 12px;
     box-shadow: 0 4px 8px var(--card-teacher-shadow);
 
-    textarea:disabled {
-        opacity: 1;
-        cursor: default;
-        border-color: none;
-        overflow: hidden;
-        height: min-content;
-        resize: none;
+
+    .AnnouncementCardDetail__Description {
+        width: 100%;
+        white-space: pre-wrap;
+        border-radius: 5px;
+        font-size: 14px;
+        border: var(--border-dot) 1px solid;
+        padding: 10px;
+        margin-bottom: 5px;
     }
 
     .AnnouncementCardDetail_H2 {
         font-size: 18px;
         font-weight: 700;
         letter-spacing: -.05em;
+        margin-bottom: 5px;
     }
 }
 
