@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 import { Input } from "@/components/ui/input"; // если нужно, поправь путь
+import { PathPJ } from "@/utils/path";
 
 const PriceRangeInput = () => {
   const router = useRouter();
@@ -15,8 +16,11 @@ const PriceRangeInput = () => {
   const [priceFrom, setPriceFrom] = useState(currentPriceFrom);
   const [priceTo, setPriceTo] = useState(currentPriceTo);
 
-  const [priceFromTimeout, setPriceFromTimeout] = useState<NodeJS.Timeout | null>(null);
-  const [priceToTimeout, setPriceToTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [priceFromTimeout, setPriceFromTimeout] =
+    useState<NodeJS.Timeout | null>(null);
+  const [priceToTimeout, setPriceToTimeout] = useState<NodeJS.Timeout | null>(
+    null
+  );
 
   const updateQueryParam = (key: string, value: string) => {
     const params = new URLSearchParams(searchParams);
@@ -25,7 +29,7 @@ const PriceRangeInput = () => {
     } else {
       params.delete(key);
     }
-    router.push(`?${params.toString()}`);
+    router.push(`${PathPJ.tutors}?${params.toString()}`);
   };
 
   const handlePriceFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {

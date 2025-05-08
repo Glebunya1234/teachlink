@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
 import { Input } from "@/components/ui/input";
+import { PathPJ } from "@/utils/path";
 
 const CityInput = () => {
   const router = useRouter();
@@ -30,13 +31,12 @@ const CityInput = () => {
       } else {
         params.delete("city");
       }
-      router.push(`?${params.toString()}`);
+      router.push(`${PathPJ.tutors}?${params.toString()}`);
     }, 1200);
 
     setTypingTimeout(timeout);
   };
 
-  
   useEffect(() => {
     setCity(currentCity);
   }, [currentCity]);

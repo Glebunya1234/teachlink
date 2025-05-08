@@ -41,8 +41,10 @@ export const handleMarkAll = async (
     NotifResponseUpdate: (ids: string[], is_read: boolean) => any,
     queryClient: any,
     userId: string | undefined,
-    setSelectedIds: React.Dispatch<React.SetStateAction<string[]>>
+    setSelectedIds: React.Dispatch<React.SetStateAction<string[]>>,
+
 ) => {
+
     if (selectedIds.length === 0) return;
 
     await NotifResponseUpdate(selectedIds, is_read);

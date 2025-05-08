@@ -8,6 +8,7 @@ import styles from "./SubjectCheckboxes.module.scss";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { PathPJ } from "@/utils/path";
 
 interface SubjectCheckboxesProps {
   subjects: SubjectDTO[];
@@ -34,7 +35,7 @@ export const SubjectCheckboxes: FC<SubjectCheckboxesProps> = ({ subjects }) => {
     } else {
       params.delete("subjects");
     }
-    router.push(`?${params.toString()}`);
+    router.push(`${PathPJ.tutors}?${params.toString()}`);
   };
 
   useEffect(() => {

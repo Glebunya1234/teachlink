@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import styles from "../tutors.module.scss";
 
 import TeachersCard from "@/components/card/teachers-card/TeachersCard";
+import { TeacherCardFarmer } from "@/components/farmer-components/teacher-card-farmer/TeacherCardFarmer";
 import { PaginationComponent } from "@/components/pagination";
 import { SortByEnumMDB } from "@/gen/data-contracts";
 import { TeacherQuery } from "@/quaries";
@@ -53,8 +54,10 @@ const tutorsIdPage: FC<Props> = async ({ params, searchParams }) => {
 
   return (
     <main className={styles.TutorsPage}>
-      {data.items?.map((item) => (
-        <TeachersCard teacher={item} key={item.uid} />
+      {data.items?.map((item, index) => (
+        <TeacherCardFarmer index={index} key={item.uid}>
+          <TeachersCard teacher={item} />
+        </TeacherCardFarmer>
       ))}
       <PaginationComponent
         currentPage={Number(id)}

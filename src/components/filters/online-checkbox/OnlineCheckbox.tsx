@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { Checkbox } from "@/components/ui/checkbox";
+import { PathPJ } from "@/utils/path";
 
 export const OnlineCheckbox = () => {
   const router = useRouter();
@@ -28,7 +29,7 @@ export const OnlineCheckbox = () => {
       params.delete("online");
     }
 
-    router.push(`?${params.toString()}`);
+    router.push(`${PathPJ.tutors}?${params.toString()}`);
   };
 
   return (

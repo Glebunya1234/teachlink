@@ -3,6 +3,7 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { FC, useState } from "react";
 
+import { UserConnectFarmer } from "../farmer-components/user-profile-farmer/UserProfileFarmer";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 
@@ -97,51 +98,54 @@ export const ContactComponent: FC<Props> = ({
   )
     return null;
   return (
-    <div className={styles.ContactComponent}>
-      <div>
-        <h2>Respond to:</h2>
-        <h3>{contact_name}</h3>
+    <UserConnectFarmer>
+      <div className={styles.ContactComponent}>
+        <div>
+          <h2>Respond to:</h2>
+          <h3>{contact_name}</h3>
+        </div>
+        <Separator />
+        {user_id && access_token ? (
+          <>
+            <p>
+              After confirming the response, the user will receive a
+              notification about you and will be able to contact you using your
+              phone number
+            </p>
+            <Button
+              variant="default"
+              onClick={() => {
+                handleConnect({
+                  access_token: access_token,
+                  contact_id,
+                  for_teacher,
+                  id_user: user_id,
+                });
+              }}
+            >
+              {sending ? (
+                <>
+                  <Loader2 className="animate-spin" /> Sending...
+                </>
+              ) : (
+                " Connect"
+              )}
+            </Button>
+          </>
+        ) : (
+          <>
+            <p>To contact users you need to log in</p>
+            <Button
+              variant="default"
+              onClick={() => {
+                router.push(PathPJ.login);
+              }}
+            >
+              Log in
+            </Button>
+          </>
+        )}
       </div>
-      <Separator />
-      {user_id && access_token ? (
-        <>
-          <p>
-            After confirming the response, the user will receive a notification
-            about you and will be able to contact you using your phone number
-          </p>
-          <Button
-            variant="default"
-            onClick={() => {
-              handleConnect({
-                access_token: access_token,
-                contact_id,
-                for_teacher,
-                id_user: user_id,
-              });
-            }}
-          >
-            {sending ? (
-              <>
-                <Loader2 className="animate-spin" /> Sending...
-              </>
-            ) : (
-              " Connect"
-            )}
-          </Button>
-        </>
-      ) : (
-        <>
-          <p>To contact users you need to log in</p>
-          <Button
-            variant="default"
-            onClick={() => {
-              router.push(PathPJ.login);
-            }}
-          >
-            Log in
-          </Button>
-        </>
-      )}
-    </div>
+    </UserConnectFarmer>
   );
 };

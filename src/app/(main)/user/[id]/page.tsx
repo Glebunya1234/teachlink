@@ -8,6 +8,12 @@ import { ProfileCard } from "@/components/card/user-detail-card/profile-card/Pro
 import { ReviewCard } from "@/components/card/user-detail-card/review-card/ReviewCard";
 import { SubjectsCard } from "@/components/card/user-detail-card/subjects-card/SubjectsCard";
 import { ContactComponent } from "@/components/connect-component/ContactComponent";
+import {
+  UserConnectFarmer,
+  UserContentFarmer,
+  UserProfileFarmer,
+  UserSubjectFarmer,
+} from "@/components/farmer-components/user-profile-farmer/UserProfileFarmer";
 import { TeacherQuery } from "@/quaries";
 
 interface UserPageProps {
@@ -41,17 +47,28 @@ const UserPage: FC<UserPageProps> = async ({ params }) => {
   return (
     <div className={styles.UserPage}>
       <div className={styles.UserPage__ProfileWrapper}>
-        <ProfileCard {...ProfileInfo} />
+        <UserProfileFarmer>
+          <ProfileCard {...ProfileInfo} />
+        </UserProfileFarmer>
+
         <ContactComponent
           contact_id={id}
           for_teacher={true}
           contact_name={teacher.full_name}
         />
       </div>
-      <SubjectsCard school_subjects={school_subjects} />
-      <LocationCard {...LocationInfo} />
-      <DetailInfoCard {...DetailInfo} />
-      <ReviewCard teacher_subjects={teacher.school_subjects} />
+      <UserSubjectFarmer>
+        <SubjectsCard school_subjects={school_subjects} />
+      </UserSubjectFarmer>
+      <UserContentFarmer index={4}>
+        <LocationCard {...LocationInfo} />
+      </UserContentFarmer>
+      <UserContentFarmer index={5}>
+        <DetailInfoCard {...DetailInfo} />
+      </UserContentFarmer>
+      <UserContentFarmer index={6}>
+        <ReviewCard teacher_subjects={teacher.school_subjects} />
+      </UserContentFarmer>
     </div>
   );
 };

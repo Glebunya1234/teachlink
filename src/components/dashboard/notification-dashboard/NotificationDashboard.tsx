@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Mail, MailOpen } from "lucide-react";
@@ -11,6 +12,7 @@ import {
 } from "./func";
 import styles from "./NotificationDashboard.module.scss";
 
+import { CardFarmer } from "@/components/farmer-components/card-farmer/CardFarmer";
 import {
   Accordion,
   AccordionContent,
@@ -19,11 +21,13 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/hooks/use-toast";
 import { useNotificationBarStore } from "@/provider/Notification-Provider/notification-provider";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { NotificationQuery } from "@/quaries/notifications";
 
 export const NotificationDashboard: FC = () => {
+  const { toast } = useToast();
   const { getSessionUser } = useAuthStore((state) => state);
   const { getActiveBar } = useNotificationBarStore((state) => state);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
@@ -69,6 +73,28 @@ export const NotificationDashboard: FC = () => {
       return 0;
     });
 
+  const handleMarkClick = async (type: boolean) => {
+    try {
+      await handleMarkAll(
+        selectedIds,
+        type,
+        NotifResponseUpdate,
+        queryClient,
+        userId,
+        setSelectedIds
+      );
+      toast({
+        title: "Success",
+        description: `Notifications marked as ${type ? "read" : "unread"}`,
+      });
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "An error occurred while marking notifications.",
+        variant: "destructive",
+      });
+    }
+  };
   return (
     <div className={styles.NotificationDashboard}>
       <nav className={styles.NotificationDashboard__Nav}>
@@ -92,33 +118,12 @@ export const NotificationDashboard: FC = () => {
         <Button
           variant="ghost"
           className="ml-auto"
-          onClick={() =>
-            handleMarkAll(
-              selectedIds,
-              true,
-              NotifResponseUpdate,
-              queryClient,
-              userId,
-              setSelectedIds
-            )
-          }
+          onClick={() => handleMarkClick(true)}
         >
           <MailOpen />
           Mark All as Read
         </Button>
-        <Button
-          variant="ghost"
-          onClick={() =>
-            handleMarkAll(
-              selectedIds,
-              false,
-              NotifResponseUpdate,
-              queryClient,
-              userId,
-              setSelectedIds
-            )
-          }
-        >
+        <Button variant="ghost" onClick={() => handleMarkClick(false)}>
           <Mail /> Mark All as Unread
         </Button>
       </nav>
@@ -131,48 +136,52 @@ export const NotificationDashboard: FC = () => {
 
       <Accordion type="single" collapsible className={styles.Accordion}>
         {filteredNotifications?.map((notification, ind) => (
-          <AccordionItem
-            key={notification.id}
-            value={notification.id.toString()}
-            className={notification.is_read ? styles.AccordionItem__Read : ""}
-          >
-            <div className="flex items-center flex-row">
-              <Checkbox
-                id={`notification/${ind}`}
-                checked={selectedIds.includes(notification.id)}
-                onCheckedChange={(checked) =>
-                  handleCheckboxChange(
-                    Boolean(checked),
-                    notification.id,
-                    setSelectedIds
-                  )
-                }
-              />
-              <div className={styles.NotificationDashboard__AccordionTrigger}>
-                <AccordionTrigger>
-                  <div className={styles.AccordionTrigger__UserName}>
-                    {role === "tutors"
-                      ? notification.id_student.full_name
-                      : notification.id_teacher.full_name}
-                  </div>
-                  <div className={styles.AccordionTrigger__DescriptionTrigger}>
-                    {`Description: A ${
-                      role == "student" ? "teacher" : "student"
-                    } responded to your questionnaire`}
-                  </div>
-                </AccordionTrigger>
+          <CardFarmer key={notification.id} index={ind}>
+            <AccordionItem
+              key={notification.id}
+              value={notification.id.toString()}
+              className={notification.is_read ? styles.AccordionItem__Read : ""}
+            >
+              <div className="flex items-center flex-row">
+                <Checkbox
+                  id={`notification/${ind}`}
+                  checked={selectedIds.includes(notification.id)}
+                  onCheckedChange={(checked) =>
+                    handleCheckboxChange(
+                      Boolean(checked),
+                      notification.id,
+                      setSelectedIds
+                    )
+                  }
+                />
+                <div className={styles.NotificationDashboard__AccordionTrigger}>
+                  <AccordionTrigger>
+                    <div className={styles.AccordionTrigger__UserName}>
+                      {role === "tutors"
+                        ? notification.id_student.full_name
+                        : notification.id_teacher.full_name}
+                    </div>
+                    <div
+                      className={styles.AccordionTrigger__DescriptionTrigger}
+                    >
+                      {`Description: A ${
+                        role == "student" ? "teacher" : "student"
+                      } responded to your questionnaire`}
+                    </div>
+                  </AccordionTrigger>
+                </div>
               </div>
-            </div>
-            <AccordionContent className={styles.AccordionContent}>
-              <p className={styles.NotificationDashboard_Desc}>
-                {getNotificationMessage(
-                  role,
-                  user?.currentUser?.full_name,
-                  notification
-                )}
-              </p>
-            </AccordionContent>
-          </AccordionItem>
+              <AccordionContent className={styles.AccordionContent}>
+                <p className={styles.NotificationDashboard_Desc}>
+                  {getNotificationMessage(
+                    role,
+                    user?.currentUser?.full_name,
+                    notification
+                  )}
+                </p>
+              </AccordionContent>
+            </AccordionItem>
+          </CardFarmer>
         ))}
       </Accordion>
     </div>

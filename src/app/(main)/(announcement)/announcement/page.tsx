@@ -3,6 +3,7 @@ import React from "react";
 import styles from "../announcement.module.scss";
 
 import { AnnouncementCardSearch } from "@/components/card/announcement-card/announcement-card-search/AnnouncementCardSearch";
+import { ADCardFarmer } from "@/components/farmer-components/ad-card-farmer/ADCardFarmer";
 import { PaginationComponent } from "@/components/pagination";
 import { AnnouncementsQuery } from "@/quaries";
 import { PathPJ } from "@/utils/path";
@@ -15,11 +16,13 @@ const AnnouncementPage = async () => {
       <p>Here you can find all the announcements related to your account.</p>
       <section className={styles.AnnouncementPage__List}>
         {data.items?.map((item, index) => (
-          <AnnouncementCardSearch
-            key={item.id}
-            announcement_index={index + 1}
-            announcement={item}
-          />
+          <ADCardFarmer key={item.id} index={index}>
+            <AnnouncementCardSearch
+              key={item.id}
+              announcement_index={index + 1}
+              announcement={item}
+            />
+          </ADCardFarmer>
         ))}
       </section>
       <PaginationComponent
