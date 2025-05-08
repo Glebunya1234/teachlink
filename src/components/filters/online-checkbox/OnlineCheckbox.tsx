@@ -29,7 +29,7 @@ export const OnlineCheckbox = () => {
       params.delete("online");
     }
 
-    router.push(`${PathPJ.tutors}?${params.toString()}`);
+    router.replace(`${PathPJ.tutors}?${params.toString()}`);
   };
 
   return (

@@ -35,7 +35,7 @@ export const SubjectCheckboxes: FC<SubjectCheckboxesProps> = ({ subjects }) => {
     } else {
       params.delete("subjects");
     }
-    router.push(`${PathPJ.tutors}?${params.toString()}`);
+    router.replace(`${PathPJ.tutors}?${params.toString()}`);
   };
 
   useEffect(() => {

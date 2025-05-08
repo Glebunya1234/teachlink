@@ -1,6 +1,7 @@
 "use client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { Star } from "lucide-react";
+import { AnimatePresence } from "motion/react";
 import { usePathname } from "next/navigation";
 import React, { FC, useEffect, useRef } from "react";
 
@@ -8,6 +9,7 @@ import { EditCreateCard } from "../edit-create-card/EditCreateCard";
 
 import styles from "./ReviewCard.module.scss";
 
+import { CardFarmer } from "@/components/farmer-components/card-farmer/CardFarmer";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { SchoolSubjectDTO } from "@/gen/data-contracts";
@@ -74,40 +76,47 @@ export const ReviewCard: FC<ReviewCardProps> = ({ teacher_subjects }) => {
         teacher_id={teacher_id}
         teacher_subjects={teacher_subjects}
       />
+      <AnimatePresence>
+        {reviews.map((item, index) => (
+          <CardFarmer
+            key={item.id}
+            index={index}
+            className={styles.ReviewCard__Review}
+          >
+            {/* <div key={index} className={styles.ReviewCard__Review}> */}
+            <div className={styles.Review__Wrapper}>
+              <h2>{item.id_students.full_name}</h2>
+              <div className={styles.Review__StarWrapper}>
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    size={14}
+                    fill={i < item.rating ? "#fac917" : "none"}
+                    color="#fac917"
+                  />
+                ))}
+              </div>
+              <Badge variant="secondary" className={styles.Review__Date}>
+                {new Date(item.createdAt).toLocaleDateString()}
+              </Badge>
+            </div>
 
-      {reviews.map((item, index) => (
-        <div key={index} className={styles.ReviewCard__Review}>
-          <div className={styles.Review__Wrapper}>
-            <h2>{item.id_students.full_name}</h2>
-            <div className={styles.Review__StarWrapper}>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star
+            <div className={styles.Review__Subject}>
+              {item.school_subjects.map((subject, i) => (
+                <Badge
                   key={i}
-                  size={14}
-                  fill={i < item.rating ? "#fac917" : "none"}
-                  color="#fac917"
-                />
+                  variant="secondary"
+                  className={styles.Review__SubjectBadge}
+                >
+                  {subject.subject}
+                </Badge>
               ))}
             </div>
-            <Badge variant="secondary" className={styles.Review__Date}>
-              {new Date(item.createdAt).toLocaleDateString()}
-            </Badge>
-          </div>
-
-          <div className={styles.Review__Subject}>
-            {item.school_subjects.map((subject, i) => (
-              <Badge
-                key={i}
-                variant="secondary"
-                className={styles.Review__SubjectBadge}
-              >
-                {subject.subject}
-              </Badge>
-            ))}
-          </div>
-          <p className={styles.Review__Desc}>{item.reviews_text}</p>
-        </div>
-      ))}
+            <p className={styles.Review__Desc}>{item.reviews_text}</p>
+            {/* </div> */}
+          </CardFarmer>
+        ))}
+      </AnimatePresence>
 
       {hasNextPage && reviews.length !== 0 && (
         <Button

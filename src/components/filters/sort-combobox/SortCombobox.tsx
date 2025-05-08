@@ -43,7 +43,7 @@ const SortCombobox = () => {
     } else {
       params.delete("sort");
     }
-    router.push(`?${params.toString()}`);
+    router.replace(`?${params.toString()}`);
     setOpen(false);
   };
   return (

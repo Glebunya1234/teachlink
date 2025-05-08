@@ -3,7 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 
-import { Input } from "@/components/ui/input"; // если нужно, поправь путь
+import { Input } from "@/components/ui/input";
 import { PathPJ } from "@/utils/path";
 
 const PriceRangeInput = () => {
@@ -29,7 +29,7 @@ const PriceRangeInput = () => {
     } else {
       params.delete(key);
     }
-    router.push(`${PathPJ.tutors}?${params.toString()}`);
+    router.replace(`${PathPJ.tutors}?${params.toString()}`);
   };
 
   const handlePriceFromChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +62,6 @@ const PriceRangeInput = () => {
     setPriceToTimeout(timeout);
   };
 
-  // Обновляем инпуты при изменении searchParams
   useEffect(() => {
     setPriceFrom(currentPriceFrom);
     setPriceTo(currentPriceTo);

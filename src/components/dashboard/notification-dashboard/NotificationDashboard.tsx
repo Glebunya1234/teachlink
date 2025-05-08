@@ -21,6 +21,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { EmptyPlaceholder } from "@/components/ui/empty-placeholder/EmptyPlaceholder";
 import { useToast } from "@/hooks/use-toast";
 import { useNotificationBarStore } from "@/provider/Notification-Provider/notification-provider";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
@@ -133,7 +134,7 @@ export const NotificationDashboard: FC = () => {
           <Loader2 className="animate-spin" />
         </div>
       )}
-
+      {filteredNotifications?.length === 0 && <EmptyPlaceholder type="Empty" />}
       <Accordion type="single" collapsible className={styles.Accordion}>
         {filteredNotifications?.map((notification, ind) => (
           <CardFarmer key={notification.id} index={ind}>

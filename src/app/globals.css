@@ -70,7 +70,6 @@
     --card-teacher-shadow: #0000001a;
   }
   .dark {
-
     --blur-color-header: #0a0a0ae8;
 
     --page-maxsize: 1400px;
@@ -142,6 +141,16 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground ;
   }
+}
+html, body {
+  overflow: auto;
+  scrollbar-width: none;  
+  -ms-overflow-style: none;  
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;  
 }

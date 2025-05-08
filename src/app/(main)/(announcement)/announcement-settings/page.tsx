@@ -1,6 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { Loader2 } from "lucide-react";
+import { AnimatePresence } from "motion/react";
 import React from "react";
 
 import styles from "../announcement.module.scss";
@@ -9,6 +10,7 @@ import { AnnouncementCardEdit } from "@/components/card/announcement-card/announ
 import { ADCardFarmer } from "@/components/farmer-components/ad-card-farmer/ADCardFarmer";
 import { CardFarmer } from "@/components/farmer-components/card-farmer/CardFarmer";
 import { CreateAnnouncementButton } from "@/components/ui/create-announcement-button/CreateAnnouncementButton";
+import { EmptyPlaceholder } from "@/components/ui/empty-placeholder/EmptyPlaceholder";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { AnnouncementsQuery, SubjectQuery } from "@/quaries";
 
@@ -43,18 +45,22 @@ const AnnouncementSettingsPage = () => {
     <div className={styles.AnnouncementPage}>
       <h1>Announcement</h1>
       <p>Your announcement are here, you can edit as you wish only here</p>
+      {announcement?.data?.length === 0 && <EmptyPlaceholder type="Empty" />}
       <section className={styles.AnnouncementPage__List}>
-        {announcement?.data?.map((item, index) => (
-          <CardFarmer key={item.id} index={index}>
-            <AnnouncementCardEdit
-              user_id={userId}
-              token={userToken}
-              announcement_index={index + 1}
-              all_subjects={subjects?.data}
-              announcement={item}
-            />
-          </CardFarmer>
-        ))}
+        <AnimatePresence>
+          {announcement?.data?.map((item, index) => (
+            <CardFarmer key={item.id} index={index}>
+              <AnnouncementCardEdit
+                key={item.id}
+                user_id={userId}
+                token={userToken}
+                announcement_index={index + 1}
+                all_subjects={subjects?.data}
+                announcement={item}
+              />
+            </CardFarmer>
+          ))}
+        </AnimatePresence>
       </section>
       <CreateAnnouncementButton
         all_subjects={subjects?.data}

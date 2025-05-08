@@ -31,7 +31,7 @@ const CityInput = () => {
       } else {
         params.delete("city");
       }
-      router.push(`${PathPJ.tutors}?${params.toString()}`);
+      router.replace(`${PathPJ.tutors}?${params.toString()}`);
     }, 1200);
 
     setTypingTimeout(timeout);

@@ -5,6 +5,7 @@ import styles from "../tutors.module.scss";
 import TeachersCard from "@/components/card/teachers-card/TeachersCard";
 import { TeacherCardFarmer } from "@/components/farmer-components/teacher-card-farmer/TeacherCardFarmer";
 import { PaginationComponent } from "@/components/pagination";
+import { EmptyPlaceholder } from "@/components/ui/empty-placeholder/EmptyPlaceholder";
 import { SortByEnumMDB } from "@/gen/data-contracts";
 import { TeacherQuery } from "@/quaries";
 import { PathPJ } from "@/utils/path";
@@ -54,6 +55,7 @@ const tutorsIdPage: FC<Props> = async ({ params, searchParams }) => {
 
   return (
     <main className={styles.TutorsPage}>
+      {data.items?.length === 0 && <EmptyPlaceholder type="NotResults" />}
       {data.items?.map((item, index) => (
         <TeacherCardFarmer index={index} key={item.uid}>
           <TeachersCard teacher={item} />
