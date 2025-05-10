@@ -1,6 +1,7 @@
 "use client";
+import { Link2 } from "lucide-react";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React from "react";
 
 import SessionActionComponent from "../session-actions/session-action-component";
 import ThemeSwitcher from "../ui/theme-switcher/ThemeSwitcher";
@@ -15,6 +16,10 @@ const Header = () => {
       <header className={styles.Header}>
         <div className={styles.Header__container_wrapper}>
           <ul className={styles.Header__nav}>
+            <li className={styles.Header__nav__item_logo}>
+              <Link2 />
+              <span className={styles.LogoSpan}>TeachLink</span>
+            </li>
             <li className={styles.Header__nav__item}>
               <Link href={PathPJ.tutors}>Tutors</Link>
             </li>

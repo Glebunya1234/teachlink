@@ -31,6 +31,7 @@
         .Header__nav {
             display: flex;
             flex-direction: row;
+            align-items: center;
             gap: 20px;
 
 
@@ -43,7 +44,25 @@
                 &:hover {
                     color: var(--foriegn-text);
                 }
+
             }
+
+            .Header__nav__item_logo {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+
+                &:hover {
+                    cursor: default;
+                }
+
+                .LogoSpan {
+                    font-weight: 700;
+                    color: var(---foriegn-text);
+                }
+            }
+
+
         }
 
         .Header__Profile {
