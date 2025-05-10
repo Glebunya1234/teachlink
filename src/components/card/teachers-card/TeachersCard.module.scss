@@ -1,0 +1,80 @@
+.TeachersCard {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    gap: 20px;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--card-teacher-shadow);
+
+    .TeachersCard_SectorAvatar {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        gap: 5px;
+
+        .SectorAvatar_Wrapper {
+            width: 130px;
+            border-radius: 10px;
+            overflow: hidden;
+
+        }
+
+        h2 {
+            text-align: center;
+            font-weight: 600;
+        }
+
+        span {
+            text-align: center;
+        }
+    }
+
+    .TeachersCard_SectorDesc {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        .SectorDesc_Tags {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+    }
+
+    .TeachersCard_SectorConnect {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: auto;
+
+        max-width: 200px;
+        width: 100%;
+
+        .SectorConnect_Warper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            span {
+                text-align: center;
+            }
+
+            .SectorConnect_Button {
+                height: 50px;
+            }
+        }
+    }
+
+    .SpanIcon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        font-size: 14px;
+        width: 100%;
+    }
+}

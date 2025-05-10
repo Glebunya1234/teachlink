@@ -61,12 +61,12 @@ export class Students<SecurityDataType = unknown> extends HttpClient<SecurityDat
    *
    * @tags Students
    * @name StudentsDetail
-   * @request GET:/api/students/{id}
+   * @request GET:/api/students/{uid}
    * @secure
    */
-  studentsDetail = (id: string, params: RequestParams = {}) =>
+  studentsDetail = (uid: string, params: RequestParams = {}) =>
     this.request<StudentDTO, ProblemDetails | void>({
-      path: `/api/students/${id}`,
+      path: `/api/students/${uid}`,
       method: "GET",
       secure: true,
       format: "json",
@@ -77,12 +77,12 @@ export class Students<SecurityDataType = unknown> extends HttpClient<SecurityDat
    *
    * @tags Students
    * @name StudentsPartialUpdate
-   * @request PATCH:/api/students/{id}
+   * @request PATCH:/api/students/{uid}
    * @secure
    */
-  studentsPartialUpdate = (id: string, data: UpdateStudentDTO, params: RequestParams = {}) =>
+  studentsPartialUpdate = (uid: string, data: UpdateStudentDTO, params: RequestParams = {}) =>
     this.request<UpdateStudentDTO, ProblemDetails | void>({
-      path: `/api/students/${id}`,
+      path: `/api/students/${uid}`,
       method: "PATCH",
       body: data,
       secure: true,

@@ -14,7 +14,7 @@ import {
   FullTeacherTileDTO,
   ProblemDetails,
   SortByEnumMDB,
-  TeacherTileDTO,
+  TeacherTileDTOPaginationResponse,
   UpdateTeacherDTO,
 } from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
@@ -51,7 +51,7 @@ export class Teachers<SecurityDataType = unknown> extends HttpClient<SecurityDat
     },
     params: RequestParams = {},
   ) =>
-    this.request<TeacherTileDTO[], ProblemDetails | void>({
+    this.request<TeacherTileDTOPaginationResponse, ProblemDetails | void>({
       path: `/api/teachers`,
       method: "GET",
       query: query,
@@ -82,12 +82,12 @@ export class Teachers<SecurityDataType = unknown> extends HttpClient<SecurityDat
    *
    * @tags Teachers
    * @name TeachersDetail
-   * @request GET:/api/teachers/{id}
+   * @request GET:/api/teachers/{uid}
    * @secure
    */
-  teachersDetail = (id: string, params: RequestParams = {}) =>
+  teachersDetail = (uid: string, params: RequestParams = {}) =>
     this.request<FullTeacherTileDTO, ProblemDetails | void>({
-      path: `/api/teachers/${id}`,
+      path: `/api/teachers/${uid}`,
       method: "GET",
       secure: true,
       format: "json",
@@ -98,12 +98,12 @@ export class Teachers<SecurityDataType = unknown> extends HttpClient<SecurityDat
    *
    * @tags Teachers
    * @name TeachersPartialUpdate
-   * @request PATCH:/api/teachers/{id}
+   * @request PATCH:/api/teachers/{uid}
    * @secure
    */
-  teachersPartialUpdate = (id: string, data: UpdateTeacherDTO, params: RequestParams = {}) =>
+  teachersPartialUpdate = (uid: string, data: UpdateTeacherDTO, params: RequestParams = {}) =>
     this.request<UpdateTeacherDTO, ProblemDetails | void>({
-      path: `/api/teachers/${id}`,
+      path: `/api/teachers/${uid}`,
       method: "PATCH",
       body: data,
       secure: true,

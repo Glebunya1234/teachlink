@@ -1,0 +1,52 @@
+.AnnouncementCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    height: min-content;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--card-teacher-shadow);
+
+    .AnnouncementCard_H2 {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -.05em;
+        margin-bottom: 20px;
+    }
+
+    .AnnouncementCard_Title {
+        border-bottom: 1px solid var(--border-dot);
+    }
+
+    .AnnouncementCard_DescText {
+        width: 100%;
+        white-space: pre-wrap;
+        border-radius: 5px;
+        font-size: 14px;
+        border: var(--border-dot) 1px solid;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+
+    .AnnouncementCard_Nav {
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        gap: 5px;
+    }
+
+}
+
+.Subject_List {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.Subject_Item {
+    display: flex;
+    justify-content: center;
+}

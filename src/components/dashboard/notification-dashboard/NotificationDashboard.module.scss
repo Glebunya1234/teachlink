@@ -1,0 +1,69 @@
+.NotificationDashboard {
+    flex-direction: column;
+    display: flex;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--card-teacher-shadow);
+
+
+
+
+    .NotificationDashboard_Desc {
+        width: 100%;
+        white-space: pre-wrap;
+        border-radius: 5px;
+        font-size: 14px;
+        border: var(--border-dot) 1px solid;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+
+    .NotificationDashboard__Loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .NotificationDashboard__Nav {
+
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        padding-bottom: 15px;
+        border-bottom: var(--border-dot) 1px solid;
+
+        .Nav__SelectAll {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+        }
+    }
+
+    .AccordionItem__Read {
+        opacity: 0.5;
+    }
+
+    .AccordionTrigger__UserName {
+        max-width: 170px;
+        width: 100%;
+        margin-left: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .NotificationDashboard__AccordionTrigger {
+        flex: 1;
+    }
+
+    .AccordionTrigger__DescriptionTrigger {
+        width: 100%;
+        color: var(--secondary-text);
+    }
+}

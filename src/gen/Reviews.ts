@@ -9,7 +9,13 @@
  * ---------------------------------------------------------------
  */
 
-import { CreateReviewDTO, ProblemDetails, ReviewDTO, UpdateReviewDTO } from "./data-contracts";
+import {
+  CreateReviewDTO,
+  ProblemDetails,
+  ReviewDTO,
+  ReviewDTOPaginationResponse,
+  UpdateReviewDTO,
+} from "./data-contracts";
 import { ContentType, HttpClient, RequestParams } from "./http-client";
 
 export class Reviews<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
@@ -31,7 +37,7 @@ export class Reviews<SecurityDataType = unknown> extends HttpClient<SecurityData
     },
     params: RequestParams = {},
   ) =>
-    this.request<ReviewDTO[], ProblemDetails | void>({
+    this.request<ReviewDTOPaginationResponse, ProblemDetails | void>({
       path: `/api/reviews/${idTeacher}`,
       method: "GET",
       query: query,

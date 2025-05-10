@@ -1,0 +1,44 @@
+.TeacherFilters_Container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1400px;
+    width: 100%;
+    border-left: dashed 1px var(--border-dot);
+    border-right: dashed 1px var(--border-dot);
+
+
+    .TeacherFilters_Wrapper {
+        max-width: 280px;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        border-right: dashed 1px var(--border-dot);
+    }
+
+    .TeacherFilters_WrapperFilters {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        width: 100%;
+        max-height: min-content;
+
+        gap: 20px;
+        border: var(--border-dot) 1px solid;
+
+        border-radius: 12px;
+        box-shadow: 0 4px 8px var(--card-teacher-shadow);
+
+        .TeacherFilters_Subjects {
+            height: 230px;
+            padding-right: 5px;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+
+
+}

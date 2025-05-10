@@ -10,51 +10,67 @@
  */
 
 export interface AnnouncementDTO {
-  id: string | null;
+  id: string;
   id_students: StudentDTO;
-  mini_description: string | null;
-  school_subjects: SchoolSubjectDTO[] | null;
-  description: string | null;
+  mini_description: string;
+  school_subjects: SchoolSubjectDTO[];
+  description: string;
   /** @format date-time */
   createdAt: Date;
   /** @format date-time */
   updatedAt: Date;
 }
 
+export interface AnnouncementDTOPaginationResponse {
+  items?: AnnouncementDTO[];
+  hasNextPage?: boolean;
+  /** @format int32 */
+  totalCount?: number;
+}
+
+export interface AuthDTO {
+  isStudent: boolean;
+  isTeacher: boolean;
+}
+
 export interface CreateAnnouncementDTO {
-  id_student: string | null;
-  mini_description: string | null;
-  school_subjects?: SchoolSubjectDTO[] | null;
-  description: string | null;
+  id_student: string;
+  mini_description: string;
+  school_subjects?: SchoolSubjectDTO[];
+  description: string;
 }
 
 export interface CreateNotificationDTO {
-  id_teacher: string | null;
-  id_student: string | null;
+  id_teacher: string;
+  id_student: string;
   is_read: boolean;
   for_teacher: boolean;
 }
 
 export interface CreateReviewDTO {
-  id_teacher: string | null;
-  id_student: string | null;
-  reviews_text: string | null;
-  school_subjects?: SchoolSubjectDTO[] | null;
+  id_teacher: string;
+  id_student: string;
+  reviews_text: string;
+  school_subjects?: SchoolSubjectDTO[];
   /** @format int32 */
   rating: number;
 }
 
 export interface CreateStudentDTO {
-  full_name: string | null;
+  full_name: string;
+  email: string;
+  uid: string;
 }
 
 export interface CreateTeacherDTO {
-  full_name: string | null;
+  full_name: string;
+  email: string;
+  uid: string;
 }
 
 export interface DegreeDTO {
-  id: string | null;
-  degree_name: string | null;
+  id: string;
+  degree_name: string;
   /** @format date-time */
   createdAt: Date;
   /** @format date-time */
@@ -62,8 +78,8 @@ export interface DegreeDTO {
 }
 
 export interface ExperienceDTO {
-  id: string | null;
-  experience_name: string | null;
+  id: string;
+  experience_name: string;
   /** @format date-time */
   createdAt: Date;
   /** @format date-time */
@@ -71,26 +87,29 @@ export interface ExperienceDTO {
 }
 
 export interface FullTeacherTileDTO {
-  id: string | null;
-  full_name?: string | null;
-  description?: string | null;
-  mini_description?: string | null;
-  school_subjects?: SchoolSubjectDTO[] | null;
-  experience?: string | null;
-  degree?: string | null;
-  educational_institution?: string | null;
+  id: string;
+  uid: string;
+  full_name: string;
+  email: string;
+  description?: string;
+  mini_description?: string;
+  school_subjects?: SchoolSubjectDTO[];
+  experience?: string;
+  degree?: string;
+  educational_institution?: string;
   /** @format int32 */
   year_of_end?: number;
-  city?: string | null;
+  city?: string;
   /** @format int32 */
   age?: number;
-  sex?: string | null;
-  online?: boolean;
+  sex?: string;
+  online: boolean;
   show_info: boolean;
   /** @format int32 */
   price?: number;
   /** @format int32 */
   review_count?: number;
+  phone_number?: string;
   /** @format double */
   average_rating?: number;
   /** @format date-time */
@@ -100,7 +119,7 @@ export interface FullTeacherTileDTO {
 }
 
 export interface NotificationDTO {
-  id: string | null;
+  id: string;
   id_teacher: TeacherTileDTO;
   id_student: StudentDTO;
   is_read: boolean;
@@ -112,21 +131,21 @@ export interface NotificationDTO {
 }
 
 export interface ProblemDetails {
-  type?: string | null;
-  title?: string | null;
+  type?: string;
+  title?: string;
   /** @format int32 */
-  status?: number | null;
-  detail?: string | null;
-  instance?: string | null;
+  status?: number;
+  detail?: string;
+  instance?: string;
   [key: string]: any;
 }
 
 export interface ReviewDTO {
-  id: string | null;
+  id: string;
   id_teachers: TeacherTileDTO;
   id_students: StudentDTO;
-  reviews_text: string | null;
-  school_subjects: SchoolSubjectDTO[] | null;
+  reviews_text: string;
+  school_subjects: SchoolSubjectDTO[];
   /** @format int32 */
   rating: number;
   /** @format date-time */
@@ -135,8 +154,15 @@ export interface ReviewDTO {
   updatedAt: Date;
 }
 
+export interface ReviewDTOPaginationResponse {
+  items?: ReviewDTO[];
+  hasNextPage?: boolean;
+  /** @format int32 */
+  totalCount?: number;
+}
+
 export interface SchoolSubjectDTO {
-  subject?: string | null;
+  subject?: string;
 }
 
 export enum SortByEnumMDB {
@@ -147,12 +173,15 @@ export enum SortByEnumMDB {
 }
 
 export interface StudentDTO {
-  id: string | null;
-  full_name?: string | null;
-  city?: string | null;
+  id: string;
+  uid: string;
+  full_name: string;
+  email: string;
+  city?: string;
   /** @format int32 */
   age?: number;
-  sex?: string | null;
+  sex?: string;
+  phone_number?: string;
   /** @format date-time */
   createdAt: Date;
   /** @format date-time */
@@ -160,27 +189,30 @@ export interface StudentDTO {
 }
 
 export interface SubjectDTO {
-  id?: string | null;
-  subject?: string | null;
+  id: string;
+  subject: string;
   /** @format date-time */
-  createdAt?: Date;
+  createdAt: Date;
   /** @format date-time */
-  updatedAt?: Date;
+  updatedAt: Date;
 }
 
 export interface TeacherTileDTO {
-  id: string | null;
-  full_name?: string | null;
-  mini_description?: string | null;
-  school_subjects?: SchoolSubjectDTO[] | null;
-  experience?: string | null;
-  degree?: string | null;
-  educational_institution?: string | null;
+  id: string;
+  uid: string;
+  full_name: string;
+  email: string;
+  mini_description?: string;
+  school_subjects?: SchoolSubjectDTO[];
+  experience?: string;
+  degree?: string;
+  educational_institution?: string;
   online?: boolean;
   /** @format int32 */
   price?: number;
   show_info?: boolean;
-  city?: string | null;
+  phone_number: string;
+  city?: string;
   /** @format int32 */
   age?: number;
   /** @format int32 */
@@ -193,51 +225,65 @@ export interface TeacherTileDTO {
   updatedAt: Date;
 }
 
+export interface TeacherTileDTOPaginationResponse {
+  items?: TeacherTileDTO[];
+  hasNextPage?: boolean;
+  /** @format int32 */
+  totalCount?: number;
+}
+
 export interface UpdateAnnouncementDTO {
-  mini_description?: string | null;
-  school_subjects?: SchoolSubjectDTO[] | null;
-  description?: string | null;
+  mini_description?: string;
+  school_subjects?: SchoolSubjectDTO[];
+  description?: string;
 }
 
 export interface UpdateNotificationDTO {
   is_read?: boolean;
 }
 
+export interface UpdateNotificationListDTO {
+  ids: string[];
+  is_read: boolean;
+}
+
 export interface UpdateReviewDTO {
-  reviews_text?: string | null;
-  school_subjects?: SchoolSubjectDTO[] | null;
+  reviews_text?: string;
+  school_subjects?: SchoolSubjectDTO[];
   /** @format int32 */
-  rating?: number | null;
+  rating?: number;
 }
 
 export interface UpdateStudentDTO {
-  full_name?: string | null;
-  city?: string | null;
+  full_name?: string;
+  city?: string;
   /** @format int32 */
-  age?: number | null;
-  sex?: string | null;
+  age?: number;
+  sex?: string;
+  phone_number?: string;
 }
 
 export interface UpdateTeacherDTO {
-  full_name?: string | null;
-  description?: string | null;
-  mini_description?: string | null;
-  school_subjects?: SchoolSubjectDTO[] | null;
-  experience?: string | null;
-  degree?: string | null;
-  educational_institution?: string | null;
+  full_name?: string;
+  description?: string;
+  mini_description?: string;
+  school_subjects?: SchoolSubjectDTO[];
+  experience?: string;
+  degree?: string;
+  educational_institution?: string;
   /** @format int32 */
-  year_of_end?: number | null;
-  city?: string | null;
+  year_of_end?: number;
+  city?: string;
   /** @format int32 */
-  age?: number | null;
-  sex?: string | null;
-  online?: boolean | null;
-  show_info?: boolean | null;
+  age?: number;
+  sex?: string;
+  online?: boolean;
+  show_info?: boolean;
   /** @format int32 */
-  review_count?: number | null;
+  review_count?: number;
+  phone_number?: string;
   /** @format double */
-  average_rating?: number | null;
+  average_rating?: number;
   /** @format int32 */
-  price?: number | null;
+  price?: number;
 }

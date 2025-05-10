@@ -1,0 +1,28 @@
+.Footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    border-top: dashed 1px var(--border-dot);
+
+}
+
+.Footer__Wrapper {
+    width: 100%;
+    max-width: var(--page-maxsize);
+    height: 56px;
+    display: flex;
+    align-items: center;
+
+    padding-left: 20px;
+    color: var(--secondary-text);
+    border-left: dashed 1px var(--border-dot);
+    border-right: dashed 1px var(--border-dot);
+
+    span {
+        display: flex;
+        font-display: row;
+        align-items: center;
+        gap: 5px;
+    }
+
+}

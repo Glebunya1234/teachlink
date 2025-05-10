@@ -9,7 +9,7 @@
  * ---------------------------------------------------------------
  */
 
-import { NotificationDTO } from "./data-contracts";
+import { AuthDTO } from "./data-contracts";
 import { HttpClient, RequestParams } from "./http-client";
 
 export class IsChekedRole<SecurityDataType = unknown> extends HttpClient<SecurityDataType> {
@@ -18,12 +18,12 @@ export class IsChekedRole<SecurityDataType = unknown> extends HttpClient<Securit
    *
    * @tags Auth
    * @name IsChekedRoleDetail
-   * @request GET:/api/IsChekedRole/{id}
+   * @request GET:/api/IsChekedRole/{uid}
    * @secure
    */
-  isChekedRoleDetail = (id: string, params: RequestParams = {}) =>
-    this.request<NotificationDTO, void>({
-      path: `/api/IsChekedRole/${id}`,
+  isChekedRoleDetail = (uid: string, params: RequestParams = {}) =>
+    this.request<AuthDTO, void>({
+      path: `/api/IsChekedRole/${uid}`,
       method: "GET",
       secure: true,
       format: "json",

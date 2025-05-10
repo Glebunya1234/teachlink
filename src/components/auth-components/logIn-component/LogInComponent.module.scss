@@ -1,0 +1,53 @@
+.LogInComponent {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 380px;
+    width: 100%;
+    padding: 24px;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .LogInComponent_HeaderWrapper {
+
+        font-family: var(--font-geist-sans);
+
+        .HeaderWrapper_H1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: x-large;
+            font-weight: 600;
+        }
+
+        span {
+            font-size: 14px;
+            color: var(--secondary-text);
+        }
+    }
+
+
+    .LogInComponent_FooterWrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        color: var(--secondary-text);
+
+
+        span {
+            color: var(--geist-foreground);
+            margin-right: 5px;
+        }
+
+        .FooterWrapper_Button {
+            padding: 0;
+        }
+
+    }
+}

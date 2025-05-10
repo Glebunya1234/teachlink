@@ -1,0 +1,91 @@
+.ReviewCard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px var(--card-teacher-shadow);
+
+    h2 {
+        font-size: 20px;
+        font-weight: 600;
+        letter-spacing: -.05em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    textarea {
+        overflow: hidden;
+        height: min-content;
+    }
+
+
+
+    .Review__Desc {
+        width: 100%;
+        white-space: pre-wrap;
+        border-radius: 5px;
+        font-size: 14px;
+        border: var(--border-dot) 1px solid;
+        padding: 10px;
+        margin-bottom: 5px;
+
+    }
+
+    .ReviewCard__Review {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border-dot);
+        background-color: var(--card-teacher-background);
+
+        .Review__Wrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .Review__StarWrapper {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .Review__Date {
+            margin-left: auto;
+        }
+
+        .Review__Subject {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            gap: 5px;
+            flex-wrap: wrap;
+
+        }
+
+        .Review__ButtonWrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        h2 {
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: -.05em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}

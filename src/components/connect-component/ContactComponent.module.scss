@@ -1,0 +1,26 @@
+.ContactComponent {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 8px;
+    border: var(--border-dot) 1px solid;
+    box-shadow: 0 4px 8px var(--card-teacher-shadow);
+    background-color: var(--card-background);
+    max-width: 300px;
+    width: 100%;
+    height: min-content;
+    gap: 15px;
+
+    h2 {
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -.05em;
+    }
+
+    p {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--secondary-text-profile);
+    }
+}

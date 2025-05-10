@@ -1,0 +1,158 @@
+ .ProfilePage_Span {
+     font-size: 18px;
+     font-weight: 500;
+     white-space: nowrap;
+ }
+
+ .ProfilePage_Wrapper {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+ }
+
+ .ProfilePage_HorisontalInput {
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     gap: 10px;
+ }
+
+ .ProfilePage_VerticalInput {
+     display: flex;
+     flex-direction: column;
+     gap: 10px;
+ }
+
+
+ .Switch_Wrapper {
+     @extend .ProfilePage_HorisontalInput;
+ }
+
+
+ .ProfilePage {
+     display: flex;
+     flex-direction: column;
+     max-width: 1400px;
+     min-height: calc(100vh - 116px);
+     width: 100%;
+     padding: 50px 100px;
+     border-left: dashed 1px var(--border-dot);
+     border-right: dashed 1px var(--border-dot);
+     gap: 10px;
+
+
+     .ProfilePage_Separator {
+         margin-bottom: 25px;
+     }
+
+     .ProfilePage_BannerInfo {
+         h1 {
+             font-size: 36px;
+             font-weight: 700;
+             letter-spacing: -.05em;
+             margin-bottom: 20px;
+         }
+     }
+
+     .ProfilePage_ConnectInfo {
+
+
+         .ConnectInfo_Container {
+             display: flex;
+             flex-direction: row;
+             margin: 10px 20px 20px;
+             gap: 40px;
+         }
+
+         .ConnectInfo_Wrapper {
+             @extend .ProfilePage_Wrapper;
+
+             gap: 20px;
+         }
+
+         .ConnectInfo_Inputs {
+             @extend .ProfilePage_HorisontalInput;
+
+         }
+
+         .ConnectInfo_Avatar {
+             width: 150px;
+             height: 150px;
+         }
+     }
+
+     .ProfilePage_ShowInfo {
+
+         .ShowInfo_Wrapper {
+             @extend .ProfilePage_VerticalInput;
+             margin: 10px 20px 20px;
+         }
+     }
+
+     .ProfilePage_SubjectsInfo {
+
+         .SubjectsInfo_Wrapper {
+             @extend .ProfilePage_HorisontalInput;
+             margin: 10px 20px 20px;
+
+         }
+     }
+
+     .ProfilePage_EducationInfo {
+
+         .EducationInfo_Wrapper {
+             @extend .ProfilePage_HorisontalInput;
+             margin: 10px 20px 20px;
+         }
+
+
+     }
+
+     .ProfilePage_LessonsInfo {
+         .LessonsInfo_Wrapper {
+             @extend .ProfilePage_HorisontalInput;
+             margin: 10px 20px 20px;
+         }
+     }
+
+     .ProfilePage_AboutInfo {
+         .AboutInfo_Wrapper {
+             @extend .ProfilePage_VerticalInput;
+             margin: 10px 20px 20px;
+         }
+     }
+
+     .ProfilePage_AdditionalInfo {
+
+         .AdditionalInfo_Wrapper {
+             @extend .ProfilePage_HorisontalInput;
+             margin: 10px 20px 20px;
+         }
+     }
+
+     .ProfilePage_Buttons {
+         display: flex;
+         flex-direction: column;
+         margin-top: auto;
+         width: 100%;
+         justify-content: center;
+     }
+
+
+     h2 {
+         font-size: 24px;
+         font-weight: 700;
+         letter-spacing: -.05em;
+         line-height: 1.2;
+         margin-bottom: 20px;
+
+     }
+
+     label {
+         color: var(--secondary-text-profile);
+     }
+
+     span {
+         color: var(--secondary-text-profile);
+     }
+ }

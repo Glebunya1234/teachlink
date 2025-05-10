@@ -1,0 +1,38 @@
+.CreateAnnouncementButton__Trigger {
+    width: 40px;
+    height: 40px;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+.Editor {
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+
+    .Editor_Section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .Editor_Footer {
+        margin-top: auto;
+    }
+}
+
+
+.Subject_List {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.Subject_Item {
+    display: flex;
+    justify-content: center;
+}

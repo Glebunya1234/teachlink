@@ -1,0 +1,38 @@
+.SignUpComponent {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 380px;
+    width: 100%;
+    padding: 24px;
+    border: var(--border-dot) 1px solid;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .SignUpComponent_HeaderWrapper {
+
+        font-family: var(--font-geist-sans);
+
+        .HeaderWrapper_H1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: x-large;
+            font-weight: 600;
+        }
+
+        span {
+            font-size: 14px;
+            color: var(--secondary-text);
+        }
+    }
+
+    .SignUpComponent_Button {
+
+        width: 100%;
+    }
+}

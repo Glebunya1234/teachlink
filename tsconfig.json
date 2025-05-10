@@ -20,7 +20,8 @@
     ],
     
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@/utils/*": ["./src/utils/*"]
     }
   },
 "ts-node": {
@@ -29,6 +30,6 @@
     "esm": true
   },
   
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/types/app/log-in/page.tsx", ".next/types/app/sign-up/page.tsx"],
   "exclude": ["node_modules"]
 }

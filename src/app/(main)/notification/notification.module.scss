@@ -1,0 +1,22 @@
+.NotificationPage {
+    display: flex;
+    flex-direction: row;
+    max-width: 1400px;
+    width: 100%;
+    min-height: calc(100vh - 116px);
+    border-left: dashed 1px var(--border-dot);
+    border-right: dashed 1px var(--border-dot);
+
+
+    .NotificationPage__NavigateBar {
+        max-width: 250px;
+        width: 100%;
+        border-right: dashed 1px var(--border-dot);
+        padding: 20px;
+    }
+
+    .NotificationPage__Dashboard {
+        width: 100%;
+        padding: 20px;
+    }
+}

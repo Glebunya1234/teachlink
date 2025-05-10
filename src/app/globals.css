@@ -4,7 +4,6 @@
 
 @layer base {
   :root {
-
     --background: 0 0% 100%;
 
     --foreground: 0 0% 3.9%;
@@ -53,8 +52,39 @@
 
     --chart-5: 27 87% 67%;
 
-    --radius: 0.5rem}
+    --radius: 0.5rem;
+
+    --visible-sun: none;
+    --visible-moon: block;
+    --icon-text: #09090b;
+
+    --foriegn-text: #09090b;
+    --secondary-text: #888890;
+    --secondary-text-profile: #535358;
+    --border-dot: #e4e5e6;
+
+    --blur-color-header: #ffffffa2;
+
+    --page-maxsize: 1400px;
+
+    --card-teacher-shadow: #0000001a;
+  }
   .dark {
+    --blur-color-header: #0a0a0ae8;
+
+    --page-maxsize: 1400px;
+
+    --visible-sun: block;
+    --visible-moon: none;
+    --icon-text: #fafafa;
+
+    --foriegn-text: #fafafa;
+    --secondary-text: #8b8b93;
+
+    --border-dot: #272829;
+
+    --card-teacher-shadow: #8d8d8d1a;
+    --secondary-text-profile: #bbbbbb;
 
     --background: 0 0% 3.9%;
 
@@ -102,7 +132,8 @@
 
     --chart-4: 280 65% 60%;
 
-    --chart-5: 340 75% 55%}
+    --chart-5: 340 75% 55%;
+  }
 }
 
 @layer base {
@@ -110,7 +141,16 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground ;
   }
 }
- 
+html, body {
+  overflow: auto;
+  scrollbar-width: none;  
+  -ms-overflow-style: none;  
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;  
+}
