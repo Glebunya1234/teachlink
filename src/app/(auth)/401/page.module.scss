@@ -1,0 +1,28 @@
+.Page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    h1 {
+        font-size: 7rem;
+        font-weight: bold;
+        line-height: 1.10;
+    }
+
+    p {
+        width: 320px;
+        text-align: center;
+        color: var(--secondary-text);
+    }
+
+    div {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+}
