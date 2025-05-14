@@ -18,5 +18,14 @@ module.exports = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/tutors',
+        permanent: true,
+      },
+    ];
+  },
 };
 export default nextConfig;
