@@ -7,6 +7,7 @@ import { z } from "zod";
 
 import styles from "../profile.module.scss";
 
+import { AvatarEditor } from "@/components/avatar-editor/AvatarEditor";
 import {
   AgeInputForm,
   CityInputForm,
@@ -15,7 +16,6 @@ import {
   PhoneInputForm,
   SexInputForm,
 } from "@/components/form-components/form-student";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
@@ -23,6 +23,7 @@ import { Spans } from "@/helpers/span-objects-profile";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { StudentQuery } from "@/quaries";
+import { PathPJ } from "@/utils/path";
 import {
   ProfileStudentSchema,
   ProfileStudentSchemaType,
@@ -41,10 +42,11 @@ const ProfileStudentPage = () => {
   });
 
   const { getSessionUser, updateData } = useAuthStore((state) => state);
+  const avatarUrl =
+    getSessionUser?.currentUser?.avatarUrl || PathPJ.defaultAvatar;
   const { toast } = useToast();
+  const userId = getSessionUser?.user?.id;
   const Func = () => {
-    const userId = getSessionUser?.user?.id;
-
     if (!userId) {
       throw new Error("User ID is missing");
     }
@@ -109,14 +111,11 @@ const ProfileStudentPage = () => {
           <h2>{Spans.Connect}</h2>
           <Separator className={styles.ProfilePage_Separator} />
           <div className={styles.ConnectInfo_Container}>
-            <Avatar className={styles.ConnectInfo_Avatar}>
-              <AvatarImage
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUspugOXub65sbxVHOEaD-JEKC8NNWgkWhlg&s"
-                alt="@shadcn"
-              />
-              <AvatarFallback>TH</AvatarFallback>
-            </Avatar>
-
+            <AvatarEditor
+              avatarUrl={avatarUrl}
+              entity={"student"}
+              uid={userId}
+            />
             <div className={styles.ConnectInfo_Wrapper}>
               <div className={styles.ConnectInfo_Inputs}>
                 <EmailInputForm

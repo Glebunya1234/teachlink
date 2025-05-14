@@ -13,4 +13,5 @@ export const PathPJ = {
     login: "/log-in",
     signup: "/sign-up",
     baseURL: "http://localhost:5204",
+    defaultAvatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUspugOXub65sbxVHOEaD-JEKC8NNWgkWhlg&s",
 }
