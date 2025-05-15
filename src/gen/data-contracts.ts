@@ -77,6 +77,12 @@ export interface DegreeDTO {
   updatedAt: Date;
 }
 
+export interface DeleteImagesDTO {
+  avatar_id: string;
+  uid: string;
+  for_teacher: boolean;
+}
+
 export interface ExperienceDTO {
   id: string;
   experience_name: string;

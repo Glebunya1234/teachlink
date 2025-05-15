@@ -5,11 +5,12 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
 
 import HeaderFooterWrapper from "@/components/header-footer-wrapper/header";
-import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { DialogStoreProvider } from "@/provider/Avatar-Dialog-Provider/avatar-dialog-provider";
 import { NotificationStoreProvider } from "@/provider/Notification-Provider/notification-provider";
 import { QuaryClientProvider } from "@/provider/QueryProvider/QuaryClientProvider";
 import { AuthStoreProvider } from "@/provider/Store-Provider/auth-provider";
+import { ThemeProvider } from "@/provider/Theme-Provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,19 +38,21 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <AuthStoreProvider>
-          <NotificationStoreProvider>
-            <QuaryClientProvider>
-              <ThemeProvider
-                attribute="class"
-                defaultTheme="system"
-                enableSystem
-                disableTransitionOnChange
-              >
-                <HeaderFooterWrapper>{children}</HeaderFooterWrapper>
-              </ThemeProvider>
-              <Toaster />
-            </QuaryClientProvider>
-          </NotificationStoreProvider>
+          <DialogStoreProvider>
+            <NotificationStoreProvider>
+              <QuaryClientProvider>
+                <ThemeProvider
+                  attribute="class"
+                  defaultTheme="system"
+                  enableSystem
+                  disableTransitionOnChange
+                >
+                  <HeaderFooterWrapper>{children}</HeaderFooterWrapper>
+                </ThemeProvider>
+                <Toaster />
+              </QuaryClientProvider>
+            </NotificationStoreProvider>
+          </DialogStoreProvider>
         </AuthStoreProvider>
       </body>
     </html>

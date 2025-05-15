@@ -5,7 +5,7 @@ import styles from "../announcement.module.scss";
 import { AnnouncementCardSearch } from "@/components/card/announcement-card/announcement-card-search/AnnouncementCardSearch";
 import { ADCardFarmer } from "@/components/farmer-components/ad-card-farmer/ADCardFarmer";
 import { PaginationComponent } from "@/components/pagination";
-import { EmptyPlaceholder } from "@/components/ui/empty-placeholder/EmptyPlaceholder";
+import { EmptyPlaceholder } from "@/components/empty-placeholder/EmptyPlaceholder";
 import { AnnouncementsQuery } from "@/quaries";
 import { PathPJ } from "@/utils/path";
 

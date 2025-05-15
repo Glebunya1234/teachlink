@@ -3,7 +3,7 @@ import { AtSign, LogOut, Mail, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-import { Button } from "../button";
+import { Button } from "../ui/button";
 
 import styles from "./ProfileButton.module.scss";
 

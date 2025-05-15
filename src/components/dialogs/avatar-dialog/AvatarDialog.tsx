@@ -1,14 +1,8 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Loader2, PencilIcon } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { Upload, X } from "lucide-react";
-import { FC } from "react";
-import * as React from "react";
-
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { Badge } from "../ui/badge";
-
-import styles from "./AvatarEditor.module.scss";
+import { FC, useState, useCallback } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +12,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import {
   FileUpload,
@@ -32,21 +25,24 @@ import {
   FileUploadTrigger,
 } from "@/components/ui/file-upload";
 import { useToast } from "@/hooks/use-toast";
+import { useDialogStore } from "@/provider/Avatar-Dialog-Provider/avatar-dialog-provider";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { ImagesQuery } from "@/quaries/images";
 
 interface IAvatarEditor {
-  avatarUrl?: string;
   uid?: string;
   entity: "student" | "teacher";
+  token?: string;
 }
 
-export const AvatarEditor: FC<IAvatarEditor> = ({ avatarUrl, uid, entity }) => {
-  const [files, setFiles] = React.useState<File[]>([]);
-  const [loading, setLoading] = React.useState(false);
+export const AvatarDialog: FC<IAvatarEditor> = ({ uid, entity, token }) => {
+  const [files, setFiles] = useState<File[]>([]);
+  const [avatarDialogOpen, setAvatarDialogOpen] =
+    useDialogStore("avatarDialog");
+  const [loading, setLoading] = useState(false);
   const updateData = useAuthStore((state) => state.updateData);
   const { toast } = useToast();
-  const onUpload = React.useCallback(
+  const onUpload = useCallback(
     async (
       files: File[],
       {
@@ -60,6 +56,7 @@ export const AvatarEditor: FC<IAvatarEditor> = ({ avatarUrl, uid, entity }) => {
       }
     ) => {
       try {
+        setLoading(true);
         const uploadPromises = files.map(async (file) => {
           try {
             const totalChunks = 10;
@@ -82,6 +79,8 @@ export const AvatarEditor: FC<IAvatarEditor> = ({ avatarUrl, uid, entity }) => {
               file,
               error instanceof Error ? error : new Error("Upload failed")
             );
+          } finally {
+            setLoading(false);
           }
         });
 
@@ -92,7 +91,7 @@ export const AvatarEditor: FC<IAvatarEditor> = ({ avatarUrl, uid, entity }) => {
     },
     []
   );
-  const onFileReject = React.useCallback((file: File, message: string) => {
+  const onFileReject = useCallback((file: File, message: string) => {
     toast({
       title: "File rejected",
       description: `File ${file.name} was rejected: ${message}`,
@@ -103,14 +102,16 @@ export const AvatarEditor: FC<IAvatarEditor> = ({ avatarUrl, uid, entity }) => {
   const handleUpload = async () => {
     try {
       setLoading(true);
-      if (!uid) throw new Error("User ID is missing");
+      if (!uid || !token) throw new Error("User ID is missing");
 
-      await ImagesQuery().imagesUidPartialUpdate({
+      await ImagesQuery(token).imagesPartialUpdate({
         uid: uid,
         avatarFile: files[0],
         for_teacher: entity === "teacher" ? true : false,
       });
       await updateData();
+      setFiles([]);
+      setAvatarDialogOpen(false);
       toast({
         title: "Success",
         description: "Avatar updated successfully.",
@@ -127,23 +128,7 @@ export const AvatarEditor: FC<IAvatarEditor> = ({ avatarUrl, uid, entity }) => {
     }
   };
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <div className={styles.AvatarEditor_AvatarConteiner}>
-          <Avatar className={styles.AvatarConteiner_AvatarWrapper}>
-            <AvatarImage
-              src={avatarUrl}
-              className={styles.AvatarWrapper_Avatar}
-              alt="@avatar"
-            />
-            <AvatarFallback>TH</AvatarFallback>
-          </Avatar>
-          <Badge variant="secondary" className={styles.EditOverlay}>
-            Edit
-            <PencilIcon size={12} />
-          </Badge>
-        </div>
-      </DialogTrigger>
+    <Dialog open={avatarDialogOpen} onOpenChange={setAvatarDialogOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Edit avatar</DialogTitle>
@@ -182,9 +167,13 @@ export const AvatarEditor: FC<IAvatarEditor> = ({ avatarUrl, uid, entity }) => {
                 <FileUploadItem key={index} value={file} className="flex-col ">
                   <div className="flex w-full justify-between items-center gap-2">
                     <FileUploadItemPreview />
-                    <FileUploadItemMetadata className="max-w-[240px]"/>
+                    <FileUploadItemMetadata className="max-w-[240px]" />
                     <FileUploadItemDelete asChild>
-                      <Button variant="ghost" size="icon" className="size-7 ml-auto">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="size-7 ml-auto"
+                      >
                         <X />
                       </Button>
                     </FileUploadItemDelete>
@@ -196,10 +185,10 @@ export const AvatarEditor: FC<IAvatarEditor> = ({ avatarUrl, uid, entity }) => {
           </FileUpload>
         </div>
         <DialogFooter>
-          <Button onClick={handleUpload}>
+          <Button onClick={handleUpload} disabled={loading}>
             {loading ? (
               <>
-                <Loader2 className="animate-spin" /> Saving...
+                <Loader2 className="animate-spin" /> Loading...
               </>
             ) : (
               "Save changes"

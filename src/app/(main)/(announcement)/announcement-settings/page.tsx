@@ -7,10 +7,9 @@ import React from "react";
 import styles from "../announcement.module.scss";
 
 import { AnnouncementCardEdit } from "@/components/card/announcement-card/announcement-card-edit/AnnouncementCardEdit";
-import { ADCardFarmer } from "@/components/farmer-components/ad-card-farmer/ADCardFarmer";
+import { CreateAnnouncementButton } from "@/components/create-announcement-button/CreateAnnouncementButton";
+import { EmptyPlaceholder } from "@/components/empty-placeholder/EmptyPlaceholder";
 import { CardFarmer } from "@/components/farmer-components/card-farmer/CardFarmer";
-import { CreateAnnouncementButton } from "@/components/ui/create-announcement-button/CreateAnnouncementButton";
-import { EmptyPlaceholder } from "@/components/ui/empty-placeholder/EmptyPlaceholder";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { AnnouncementsQuery, SubjectQuery } from "@/quaries";
 
