@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { PencilIcon } from "lucide-react";
 import { FC } from "react";

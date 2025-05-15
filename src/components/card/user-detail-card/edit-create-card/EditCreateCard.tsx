@@ -3,13 +3,12 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Star } from "lucide-react";
 import { FC, useEffect, useRef, useState } from "react";
-import { set } from "react-hook-form";
 
 import styles from "./EditCreateCard.module.scss";
 
+import { SubjectSelector } from "@/components/subject-selector/SubjectSelector";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { SubjectSelector } from "@/components/subject-selector/SubjectSelector";
 import { Textarea } from "@/components/ui/textarea";
 import { SchoolSubjectDTO } from "@/gen/data-contracts";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
@@ -30,6 +29,7 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
   const { getSessionUser } = useAuthStore((state) => state);
   const { toast } = useToast();
   const userId = getSessionUser?.user?.id;
+  const role = getSessionUser?.role;
   const userToken = getSessionUser?.session?.access_token;
 
   const [loading, setLoading] = useState(false);
@@ -120,7 +120,7 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
     });
   };
 
-  if (!userId || userId === teacher_id) return null;
+  if (!userId || role === "tutors") return null;
 
   const isNewReview = !userReviews;
 
