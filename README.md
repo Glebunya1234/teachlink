@@ -1,6 +1,6 @@
 <table>
   <tr>
-    <td width='1200px' height='120px'>
+    <td width='1200px' height='140px'>
       <p align="center">
         <img src="assets/TeachLink.png" width='750px' alt="LogoBot">
       </p>
