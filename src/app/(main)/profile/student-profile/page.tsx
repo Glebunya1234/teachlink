@@ -49,7 +49,7 @@ const ProfileStudentPage = () => {
   const { getSessionUser, updateData } = useAuthStore((state) => state);
   const avatarUrl =
     getSessionUser?.currentUser?.avatarUrl || PathPJ.defaultAvatar;
-  const avatarId = getSessionUser?.currentUser?.avatarId;
+
   const { toast } = useToast();
   const userId = getSessionUser?.user?.id;
   const token = getSessionUser?.session?.access_token;
@@ -62,11 +62,11 @@ const ProfileStudentPage = () => {
   };
   const FuncRemove = () => {
     try {
-      if (!userId || !token || !avatarId) {
+      if (!userId || !token || !getSessionUser?.currentUser?.avatarId) {
         throw new Error("User ID is missing");
       }
       return ImagesQuery(token).imagesDelete({
-        avatar_id: avatarId,
+        avatar_id: getSessionUser.currentUser.avatarId,
         for_teacher: false,
         uid: userId,
       });

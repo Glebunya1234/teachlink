@@ -31,7 +31,7 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
   const userId = getSessionUser?.user?.id;
   const role = getSessionUser?.role;
   const userToken = getSessionUser?.session?.access_token;
-
+  const [isNewReview, setIsNewReview] = useState<boolean>(true);
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState<number>(0);
   const [EditReview, setEditReview] = useState<string | undefined>();
@@ -58,6 +58,7 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
     setEditReview(userReviews?.reviews_text);
     setSelectedSubjects(userReviews?.school_subjects || []);
     setRating(userReviews?.rating ?? 0);
+    setIsNewReview(!userReviews);
   }, [userReviews]);
 
   const updateUserReviews = async () => {
@@ -122,11 +123,10 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
 
   if (!userId || role === "tutors") return null;
 
-  const isNewReview = !userReviews;
-
   const handleClick = async () => {
     if (isNewReview) {
       await createUserReviews();
+      setIsNewReview(false);
     } else {
       await updateUserReviews();
     }

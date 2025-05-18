@@ -3,14 +3,17 @@ import React from "react";
 import styles from "../announcement.module.scss";
 
 import { AnnouncementCardSearch } from "@/components/card/announcement-card/announcement-card-search/AnnouncementCardSearch";
+import { EmptyPlaceholder } from "@/components/empty-placeholder/EmptyPlaceholder";
 import { ADCardFarmer } from "@/components/farmer-components/ad-card-farmer/ADCardFarmer";
 import { PaginationComponent } from "@/components/pagination";
-import { EmptyPlaceholder } from "@/components/empty-placeholder/EmptyPlaceholder";
 import { AnnouncementsQuery } from "@/quaries";
 import { PathPJ } from "@/utils/path";
 
 const AnnouncementPage = async () => {
-  const { data } = await AnnouncementsQuery().announcementsList();
+  const { data } = await AnnouncementsQuery().announcementsList({
+    offset: 0,
+    limit: 6,
+  });
   return (
     <div className={styles.AnnouncementPage}>
       <h1>Announcement</h1>
