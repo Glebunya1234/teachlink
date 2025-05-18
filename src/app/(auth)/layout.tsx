@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 
 import "@/app/globals.css";
 
-import { ThemeProvider } from "@/components/theme-provider/ThemeProvider";
+import { ThemeProvider } from "@/provider/Theme-Provider/ThemeProvider";
 import { Toaster } from "@/components/ui/toaster";
 import { AuthStoreProvider } from "@/provider/Store-Provider/auth-provider";
 

@@ -1,8 +1,8 @@
 import { Loader2, Plus } from "lucide-react";
 import React, { FC, useRef, useState } from "react";
 
-import { Button } from "../button";
-import { Label } from "../label";
+import { Button } from "../ui/button";
+import { Label } from "../ui/label";
 import {
   Sheet,
   SheetContent,
@@ -10,13 +10,13 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../sheet";
-import { Textarea } from "../textarea";
+} from "../ui/sheet";
+import { Textarea } from "../ui/textarea";
 
 import styles from "./CreateAnnouncementButton.module.scss";
 
 import { useCreateAnnouncement } from "@/components/card/announcement-card/func";
-import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelector";
+import { SubjectSelector } from "@/components/subject-selector/SubjectSelector";
 import { SchoolSubjectDTO } from "@/gen/data-contracts";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
 interface AnnouncementCardProps {
@@ -86,7 +86,7 @@ export const CreateAnnouncementButton: FC<AnnouncementCardProps> = ({
       </SheetTrigger>
       <SheetContent className={styles.Editor}>
         <SheetHeader>
-          <SheetTitle>Editing "Announcement"</SheetTitle>
+          <SheetTitle>Creating "Announcement"</SheetTitle>
         </SheetHeader>
         <section className={styles.Editor_Section}>
           <Label htmlFor={`ShortAnn`}>
@@ -144,10 +144,10 @@ export const CreateAnnouncementButton: FC<AnnouncementCardProps> = ({
           >
             {mutation.isPending ? (
               <>
-                <Loader2 className="animate-spin" /> Saving...
+                <Loader2 className="animate-spin" /> Publishing...
               </>
             ) : (
-              "Save changes"
+              "Publish announcement"
             )}
           </Button>
         </SheetFooter>

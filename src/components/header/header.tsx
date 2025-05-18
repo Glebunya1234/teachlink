@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 import SessionActionComponent from "../session-actions/session-action-component";
-import ThemeSwitcher from "../ui/theme-switcher/ThemeSwitcher";
+import ThemeSwitcher from "../theme-switcher/ThemeSwitcher";
 
 import styles from "./header.module.scss";
 

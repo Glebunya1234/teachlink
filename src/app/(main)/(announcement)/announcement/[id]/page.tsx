@@ -3,9 +3,9 @@ import React, { FC } from "react";
 import styles from "../../announcement.module.scss";
 
 import { AnnouncementCardSearch } from "@/components/card/announcement-card/announcement-card-search/AnnouncementCardSearch";
+import { EmptyPlaceholder } from "@/components/empty-placeholder/EmptyPlaceholder";
 import { ADCardFarmer } from "@/components/farmer-components/ad-card-farmer/ADCardFarmer";
 import { PaginationComponent } from "@/components/pagination";
-import { EmptyPlaceholder } from "@/components/ui/empty-placeholder/EmptyPlaceholder";
 import { AnnouncementsQuery } from "@/quaries";
 import { PathPJ } from "@/utils/path";
 interface Props {
@@ -14,8 +14,8 @@ interface Props {
 const Page: FC<Props> = async ({ params }) => {
   const { id } = await params;
   const { data } = await AnnouncementsQuery().announcementsList({
-    offset: id * 10 - 1,
-    limit: 20,
+    offset: (id - 1) * 6 - 1,
+    limit: 6,
   });
   return (
     <div className={styles.AnnouncementPage}>
@@ -27,7 +27,7 @@ const Page: FC<Props> = async ({ params }) => {
           <ADCardFarmer key={item.id} index={index}>
             <AnnouncementCardSearch
               key={item.id}
-              announcement_index={index + 1}
+              announcement_index={(id - 1) * 6 + index }
               announcement={item}
             />
           </ADCardFarmer>

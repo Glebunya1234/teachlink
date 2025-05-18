@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
@@ -7,7 +8,9 @@ import { z } from "zod";
 
 import styles from "../profile.module.scss";
 
-import { AvatarEditor } from "@/components/avatar-editor/AvatarEditor";
+import { AvatarProfile } from "@/components/avatar-profile/AvatarProfile";
+import { AvatarDialog } from "@/components/dialogs/avatar-dialog/AvatarDialog";
+import { ConfirmDeleteDialog } from "@/components/dialogs/confirm-dialog/ConfirmDelete";
 import {
   AgeInputForm,
   CityInputForm,
@@ -23,6 +26,8 @@ import { Spans } from "@/helpers/span-objects-profile";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { StudentQuery } from "@/quaries";
+import { ImagesQuery } from "@/quaries/images";
+import { getChangedFields } from "@/utils/dirty-fields/dirty-fields";
 import { PathPJ } from "@/utils/path";
 import {
   ProfileStudentSchema,
@@ -44,30 +49,41 @@ const ProfileStudentPage = () => {
   const { getSessionUser, updateData } = useAuthStore((state) => state);
   const avatarUrl =
     getSessionUser?.currentUser?.avatarUrl || PathPJ.defaultAvatar;
+
   const { toast } = useToast();
   const userId = getSessionUser?.user?.id;
+  const token = getSessionUser?.session?.access_token;
+
   const Func = () => {
     if (!userId) {
       throw new Error("User ID is missing");
     }
     return StudentQuery().studentsDetail(userId);
   };
+  const FuncRemove = () => {
+    try {
+      if (!userId || !token || !getSessionUser?.currentUser?.avatarId) {
+        throw new Error("User ID is missing");
+      }
+      return ImagesQuery(token).imagesDelete({
+        avatar_id: getSessionUser.currentUser.avatarId,
+        for_teacher: false,
+        uid: userId,
+      });
+    } catch (error) {
+      console.log("first", error);
+    }
+  };
+
   const { data: student } = useQuery({
     queryKey: ["student", getSessionUser?.user?.id],
     queryFn: Func,
     enabled: !!getSessionUser?.user?.id,
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function getChangedFields<T>(data: T, dirtyFields: any): Partial<T> {
-    return Object.keys(dirtyFields).reduce((acc, key) => {
-      acc[key as keyof T] = data[key as keyof T];
-      return acc;
-    }, {} as Partial<T>);
-  }
-
   async function onSubmit(data: z.infer<typeof ProfileStudentSchema>) {
     const changedFields = getChangedFields(data, form.formState.dirtyFields);
+
     if (
       getSessionUser?.user?.id === undefined ||
       getSessionUser?.session?.access_token === undefined
@@ -78,7 +94,6 @@ const ProfileStudentPage = () => {
       await StudentQuery(
         getSessionUser.session.access_token
       ).studentsPartialUpdate(getSessionUser.user.id, changedFields);
-
       await updateData().then(() => {
         toast({
           title: "Success",
@@ -97,6 +112,17 @@ const ProfileStudentPage = () => {
       });
     }
   }
+  const HandleRemove = async () => {
+    await FuncRemove();
+    await updateData().then(() => {
+      toast({
+        title: "Success",
+        duration: 2000,
+        description: "Avatar removed successfully.",
+        variant: "default",
+      });
+    });
+  };
   return (
     <Form {...form}>
       <form
@@ -111,11 +137,9 @@ const ProfileStudentPage = () => {
           <h2>{Spans.Connect}</h2>
           <Separator className={styles.ProfilePage_Separator} />
           <div className={styles.ConnectInfo_Container}>
-            <AvatarEditor
-              avatarUrl={avatarUrl}
-              entity={"student"}
-              uid={userId}
-            />
+            <AvatarProfile avatarUrl={avatarUrl} />
+            <AvatarDialog entity={"student"} uid={userId} token={token} />
+            <ConfirmDeleteDialog onConfirm={HandleRemove} />
             <div className={styles.ConnectInfo_Wrapper}>
               <div className={styles.ConnectInfo_Inputs}>
                 <EmailInputForm

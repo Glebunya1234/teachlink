@@ -1,5 +1,6 @@
 "use client";
 
+import { Trash2 } from "lucide-react";
 import { FC, useEffect, useState } from "react";
 
 import { useRemoveAnnouncement } from "../func";
@@ -7,10 +8,12 @@ import { useRemoveAnnouncement } from "../func";
 import styles from "./AnnouncementCardEdit.module.scss";
 import { SheetEditor } from "./sheet-editor/SheetEditor";
 
-import { ConfirmDeleteAnnouncement } from "@/components/dialogs/ConfirmDeleteAnnouncement";
+import { ConfirmDeleteDialog } from "@/components/dialogs/confirm-dialog/ConfirmDelete";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { AnnouncementDTO, SchoolSubjectDTO } from "@/gen/data-contracts";
+import { useDialogStore } from "@/provider/Avatar-Dialog-Provider/avatar-dialog-provider";
 
 export interface AnnouncementCardProps {
   announcement: AnnouncementDTO;
@@ -38,6 +41,7 @@ export const AnnouncementCardEdit: FC<AnnouncementCardProps> = ({
     token,
     user_id,
   });
+  const [open, setOpen] = useDialogStore("deleteDialog");
 
   const HandleRemove = () => {
     mutationRemove.mutate({
@@ -92,8 +96,17 @@ export const AnnouncementCardEdit: FC<AnnouncementCardProps> = ({
           token={token}
           user_id={user_id}
         />
-        <ConfirmDeleteAnnouncement onConfirm={HandleRemove} />
+        <Button
+          variant="destructive"
+          size="icon"
+          onClick={() => {
+            setOpen(true);
+          }}
+        >
+          <Trash2 />
+        </Button>
       </section>
+      <ConfirmDeleteDialog onConfirm={HandleRemove} />
     </div>
   );
 };

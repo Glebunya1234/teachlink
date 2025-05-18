@@ -16,7 +16,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelector";
+import { SubjectSelector } from "@/components/subject-selector/SubjectSelector";
 import { Textarea } from "@/components/ui/textarea";
 import { SchoolSubjectDTO } from "@/gen/data-contracts";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
