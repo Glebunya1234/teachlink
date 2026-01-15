@@ -1,0 +1,32 @@
+.AvatarProfile_AvatarConteiner {
+    position: relative;
+
+
+    .AvatarConteiner_AvatarWrapper {
+        width: 150px;
+        height: 150px;
+    }
+
+    .AvatarWrapper_Avatar {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+    }
+
+    .EditOverlay {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+        font-size: 12px;
+        top: 75%;
+        color: var(--secondary-text-profile);
+        pointer-events: none;
+    }
+}

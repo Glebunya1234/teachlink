@@ -1,6 +1,5 @@
 "use client";
 
-import { Trash2 } from "lucide-react";
 import { FC } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -13,21 +12,18 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
+import { useDialogStore } from "@/provider/Avatar-Dialog-Provider/avatar-dialog-provider";
 
 interface DeleteDialogProps {
   onConfirm(): void;
 }
 
-export const ConfirmDeleteAnnouncement: FC<DeleteDialogProps> = ({
+export const ConfirmDeleteDialog: FC<DeleteDialogProps> = ({
   onConfirm,
 }) => {
+  const [open, setOpen] = useDialogStore("deleteDialog");
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="destructive" size="icon">
-          <Trash2 />
-        </Button>
-      </DialogTrigger>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Removal</DialogTitle>

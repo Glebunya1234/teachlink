@@ -32,7 +32,9 @@ export const AnnouncementCardSearch: FC<AnnouncementCardProps> = ({
         <div className={styles.SectorAvatar_Wrapper}>
           <AspectRatio ratio={1 / 1}>
             <Image
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUspugOXub65sbxVHOEaD-JEKC8NNWgkWhlg&s"
+              src={`${
+                announcement.id_students.avatarUrl || PathPJ.defaultAvatar
+              }`}
               alt="Avatar"
               layout="fill"
               objectFit="cover"

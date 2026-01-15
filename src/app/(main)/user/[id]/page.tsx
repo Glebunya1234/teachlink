@@ -24,6 +24,7 @@ const UserPage: FC<UserPageProps> = async ({ params }) => {
   const { data: teacher } = await TeacherQuery().teachersDetail(id);
   const ProfileInfo = {
     full_name: teacher.full_name,
+    avatarUrl: teacher.avatarUrl,
     review_count: teacher.review_count,
     average_rating: teacher.average_rating,
     mini_description: teacher.mini_description,

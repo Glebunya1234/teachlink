@@ -95,6 +95,7 @@ function createStore(
   listeners: Set<() => void>,
   files: Map<File, FileState>,
   onValueChange?: (files: File[]) => void,
+
   invalid?: boolean
 ) {
   const initialState: StoreState = {
@@ -677,6 +678,7 @@ const FileUploadDropzone = React.forwardRef<
       event.preventDefault();
       store.dispatch({ variant: "SET_DRAG_OVER", dragOver: true });
     },
+
     [store, propsRef.current.onDragEnter]
   );
 

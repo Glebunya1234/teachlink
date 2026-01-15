@@ -77,6 +77,12 @@ export interface DegreeDTO {
   updatedAt: Date;
 }
 
+export interface DeleteImagesDTO {
+  avatar_id: string;
+  uid: string;
+  for_teacher: boolean;
+}
+
 export interface ExperienceDTO {
   id: string;
   experience_name: string;
@@ -100,6 +106,8 @@ export interface FullTeacherTileDTO {
   /** @format int32 */
   year_of_end?: number;
   city?: string;
+  avatarId?: string;
+  avatarUrl?: string;
   /** @format int32 */
   age?: number;
   sex?: string;
@@ -182,6 +190,8 @@ export interface StudentDTO {
   age?: number;
   sex?: string;
   phone_number?: string;
+  avatarId?: string;
+  avatarUrl?: string;
   /** @format date-time */
   createdAt: Date;
   /** @format date-time */
@@ -204,6 +214,8 @@ export interface TeacherTileDTO {
   email: string;
   mini_description?: string;
   school_subjects?: SchoolSubjectDTO[];
+  avatarId?: string;
+  avatarUrl?: string;
   experience?: string;
   degree?: string;
   educational_institution?: string;
@@ -238,6 +250,13 @@ export interface UpdateAnnouncementDTO {
   description?: string;
 }
 
+export interface UpdateImagesDTO {
+  uid: string;
+  for_teacher: boolean;
+  /** @format binary */
+  avatarFile: File;
+}
+
 export interface UpdateNotificationDTO {
   is_read?: boolean;
 }
@@ -261,6 +280,7 @@ export interface UpdateStudentDTO {
   age?: number;
   sex?: string;
   phone_number?: string;
+  avatarId?: string;
 }
 
 export interface UpdateTeacherDTO {
@@ -268,6 +288,7 @@ export interface UpdateTeacherDTO {
   description?: string;
   mini_description?: string;
   school_subjects?: SchoolSubjectDTO[];
+  avatarId?: string;
   experience?: string;
   degree?: string;
   educational_institution?: string;

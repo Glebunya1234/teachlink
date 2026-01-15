@@ -3,13 +3,12 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Star } from "lucide-react";
 import { FC, useEffect, useRef, useState } from "react";
-import { set } from "react-hook-form";
 
 import styles from "./EditCreateCard.module.scss";
 
+import { SubjectSelector } from "@/components/subject-selector/SubjectSelector";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { SubjectSelector } from "@/components/ui/subject-selector/SubjectSelector";
 import { Textarea } from "@/components/ui/textarea";
 import { SchoolSubjectDTO } from "@/gen/data-contracts";
 import { useAutoResizeTextarea } from "@/hooks/use-auto-resize-textarea";
@@ -30,8 +29,9 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
   const { getSessionUser } = useAuthStore((state) => state);
   const { toast } = useToast();
   const userId = getSessionUser?.user?.id;
+  const role = getSessionUser?.role;
   const userToken = getSessionUser?.session?.access_token;
-
+  const [isNewReview, setIsNewReview] = useState<boolean>(true);
   const [loading, setLoading] = useState(false);
   const [rating, setRating] = useState<number>(0);
   const [EditReview, setEditReview] = useState<string | undefined>();
@@ -58,6 +58,7 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
     setEditReview(userReviews?.reviews_text);
     setSelectedSubjects(userReviews?.school_subjects || []);
     setRating(userReviews?.rating ?? 0);
+    setIsNewReview(!userReviews);
   }, [userReviews]);
 
   const updateUserReviews = async () => {
@@ -120,13 +121,12 @@ export const EditCreateCard: FC<IEditCreateCard> = ({
     });
   };
 
-  if (!userId || userId === teacher_id) return null;
-
-  const isNewReview = !userReviews;
+  if (!userId || role === "tutors") return null;
 
   const handleClick = async () => {
     if (isNewReview) {
       await createUserReviews();
+      setIsNewReview(false);
     } else {
       await updateUserReviews();
     }

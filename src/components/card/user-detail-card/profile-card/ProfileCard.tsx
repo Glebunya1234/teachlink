@@ -5,9 +5,11 @@ import React, { FC } from "react";
 import styles from "./ProfileCard.module.scss";
 
 import { Badge } from "@/components/ui/badge";
+import { PathPJ } from "@/utils/path";
 
 interface Props {
   full_name: string;
+  avatarUrl?: string;
   review_count?: number;
   average_rating?: number;
   mini_description?: string;
@@ -17,6 +19,7 @@ interface Props {
 export const ProfileCard: FC<Props> = ({
   average_rating,
   full_name,
+  avatarUrl,
   mini_description,
   price,
   review_count,
@@ -26,7 +29,7 @@ export const ProfileCard: FC<Props> = ({
       <div className={styles.ProfileCard__Avatar}>
         <div className={styles.Avatar__Wrapper}>
           <Image
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUspugOXub65sbxVHOEaD-JEKC8NNWgkWhlg&s"
+            src={`${avatarUrl || PathPJ.defaultAvatar}`}
             alt="Avatar"
             layout="fill"
             objectFit="cover"

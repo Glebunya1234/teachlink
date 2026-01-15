@@ -23,8 +23,8 @@ export const ReviewCard: FC<ReviewCardProps> = ({ teacher_subjects }) => {
   const pathname = usePathname();
   const teacher_id = pathname.split("/").slice(-1)[0];
   const { getSessionUser } = useAuthStore((state) => state);
-  const userId = getSessionUser?.user?.id;
 
+  const role = getSessionUser?.role;
   const LIMIT = 4;
 
   const descRefs = useRef<(HTMLTextAreaElement | null)[]>([]);
@@ -65,8 +65,8 @@ export const ReviewCard: FC<ReviewCardProps> = ({ teacher_subjects }) => {
   }, [reviews]);
 
   if (
-    (!userId && reviews.length == 0) ||
-    (userId === teacher_id && reviews.length == 0)
+    (role === "tutors" && reviews.length == 0) ||
+    (!role && reviews.length == 0)
   )
     return null;
   return (

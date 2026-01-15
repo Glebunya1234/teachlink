@@ -3,7 +3,7 @@ import { AtSign, LogOut, Mail, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-import { Button } from "../button";
+import { Button } from "../ui/button";
 
 import styles from "./ProfileButton.module.scss";
 
@@ -23,13 +23,14 @@ import { PathPJ } from "@/utils/path";
 const ProfileButton = () => {
   const router = useRouter();
   const { getSessionUser, logOut } = useAuthStore((state) => state);
-
+  const avatarUrl =
+    getSessionUser?.currentUser?.avatarUrl || PathPJ.defaultAvatar;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className={styles.ProfileButton__Button}>
           <Avatar className={styles.ProfileButton__Avatar}>
-            <AvatarImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUspugOXub65sbxVHOEaD-JEKC8NNWgkWhlg&s" />
+            <AvatarImage src={avatarUrl} className="object-cover object-center"/>
             <AvatarFallback>AV</AvatarFallback>
           </Avatar>
           <p>{getSessionUser?.currentUser?.full_name}</p>

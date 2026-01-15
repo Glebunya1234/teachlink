@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 "use client";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQuery } from "@tanstack/react-query";
@@ -7,6 +8,9 @@ import { z } from "zod";
 
 import styles from "../profile.module.scss";
 
+import { AvatarProfile } from "@/components/avatar-profile/AvatarProfile";
+import { AvatarDialog } from "@/components/dialogs/avatar-dialog/AvatarDialog";
+import { ConfirmDeleteDialog } from "@/components/dialogs/confirm-dialog/ConfirmDelete";
 import {
   AgeInputForm,
   CityInputForm,
@@ -25,7 +29,6 @@ import {
   SubjectSelectForm,
   WageSelectForm,
 } from "@/components/form-components/form-teacher";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Separator } from "@/components/ui/separator";
@@ -33,6 +36,9 @@ import { Spans } from "@/helpers/span-objects-profile";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthStore } from "@/provider/Store-Provider/auth-provider";
 import { TeacherQuery } from "@/quaries";
+import { ImagesQuery } from "@/quaries/images";
+import { getChangedFields } from "@/utils/dirty-fields/dirty-fields";
+import { PathPJ } from "@/utils/path";
 import {
   ProfileTicherSchema,
   ProfileTicherSchemaType,
@@ -59,7 +65,11 @@ const ProfilePage = () => {
     },
   });
   const { getSessionUser, updateData } = useAuthStore((state) => state);
+  const avatarUrl =
+    getSessionUser?.currentUser?.avatarUrl || PathPJ.defaultAvatar;
+
   const userId = getSessionUser?.user?.id;
+  const token = getSessionUser?.session?.access_token;
   const { toast } = useToast();
   const TeacherFunc = () => {
     if (!userId) {
@@ -67,22 +77,42 @@ const ProfilePage = () => {
     }
     return TeacherQuery().teachersDetail(userId);
   };
+
+  const FuncRemove = () => {
+    try {
+      if (!userId || !token || !getSessionUser?.currentUser?.avatarId) {
+        throw new Error("User ID is missing");
+      }
+      return ImagesQuery(token).imagesDelete({
+        avatar_id: getSessionUser.currentUser.avatarId,
+        for_teacher: true,
+        uid: userId,
+      });
+    } catch (error) {
+      console.log("first", error);
+    }
+  };
+  const HandleRemove = async () => {
+    await FuncRemove();
+    await updateData().then(() => {
+      toast({
+        title: "Success",
+        duration: 2000,
+        description: "Avatar removed successfully.",
+        variant: "default",
+      });
+    });
+  };
+
   const { data: teacher } = useQuery({
     queryKey: ["teacher", getSessionUser?.user?.id],
     queryFn: TeacherFunc,
     enabled: !!getSessionUser?.user?.id,
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function getChangedFields<T>(data: T, dirtyFields: any): Partial<T> {
-    return Object.keys(dirtyFields).reduce((acc, key) => {
-      acc[key as keyof T] = data[key as keyof T];
-      return acc;
-    }, {} as Partial<T>);
-  }
-
   async function onSubmit(data: z.infer<typeof ProfileTicherSchema>) {
     const changedFields = getChangedFields(data, form.formState.dirtyFields);
+
     if (
       getSessionUser?.user?.id === undefined ||
       getSessionUser?.session?.access_token === undefined
@@ -124,14 +154,9 @@ const ProfilePage = () => {
           <h2>{Spans.Connect}</h2>
           <Separator className={styles.ProfilePage_Separator} />
           <div className={styles.ConnectInfo_Container}>
-            <Avatar className={styles.ConnectInfo_Avatar}>
-              <AvatarImage
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUspugOXub65sbxVHOEaD-JEKC8NNWgkWhlg&s"
-                alt="@shadcn"
-              />
-              <AvatarFallback>TH</AvatarFallback>
-            </Avatar>
-
+            <AvatarProfile avatarUrl={avatarUrl} />
+            <AvatarDialog entity={"teacher"} uid={userId} token={token} />
+            <ConfirmDeleteDialog onConfirm={HandleRemove} />
             <div className={styles.ConnectInfo_Wrapper}>
               <div className={styles.ConnectInfo_Inputs}>
                 <EmailInputForm

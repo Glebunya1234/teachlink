@@ -8,6 +8,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { AnnouncementDTO } from "@/gen/data-contracts";
+import { PathPJ } from "@/utils/path";
 
 interface Props {
   announcement: AnnouncementDTO;
@@ -20,7 +21,9 @@ export const AnnouncementCardDetal: FC<Props> = ({ announcement }) => {
         <div className={styles.SectorAvatar_Wrapper}>
           <AspectRatio ratio={1 / 1}>
             <Image
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUspugOXub65sbxVHOEaD-JEKC8NNWgkWhlg&s"
+              src={`${
+                announcement.id_students.avatarUrl || PathPJ.defaultAvatar
+              }`}
               alt="Avatar"
               layout="fill"
               objectFit="cover"

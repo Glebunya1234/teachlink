@@ -78,6 +78,12 @@
          .ConnectInfo_Avatar {
              width: 150px;
              height: 150px;
+
+             &:hover {
+                 cursor: pointer;
+                 opacity: 0.8;
+                 
+             }
          }
      }
 
