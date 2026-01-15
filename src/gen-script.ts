@@ -6,7 +6,7 @@ import { generateApi } from 'swagger-typescript-api'
 generateApi({
   name: 'api',
   output: path.resolve(process.cwd(), './src/gen'),
-  url: 'http://localhost:5204/swagger/v1/swagger.json',
+  url: 'http://localhost:8080/swagger/v1/swagger.json',
   httpClientType: 'axios',
   extractEnums: true,
   modular: true,
@@ -21,5 +21,6 @@ generateApi({
     },
   }),
 }).catch((error) => {
+  // eslint-disable-next-line no-console
   console.error('Error generating API:', error)
 })

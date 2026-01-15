@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { Separator } from "../ui/separator";
 
@@ -18,25 +18,27 @@ const TeacherFilters = async ({
   return (
     <div className={styles.TeacherFilters_Container}>
       <div className={styles.TeacherFilters_Wrapper}>
-        <section className={styles.TeacherFilters_WrapperFilters}>
-          <h3>Subjects</h3>
-          <SubjectCheckboxes subjects={subjects} />
-          <Separator />
-          <h3>Training format</h3>
-          <OnlineCheckbox />
-          <Separator />
+        <Suspense fallback={<div>Loading filters...</div>}>
+          <section className={styles.TeacherFilters_WrapperFilters}>
+            <h3>Subjects</h3>
+            <SubjectCheckboxes subjects={subjects} />
+            <Separator />
+            <h3>Training format</h3>
+            <OnlineCheckbox />
+            <Separator />
 
-          <h3>Sort by city</h3>
-          <CityInput />
-          <Separator />
+            <h3>Sort by city</h3>
+            <CityInput />
+            <Separator />
 
-          <h3>Sort by price</h3>
-          <PriceRangeInput />
-          <Separator />
+            <h3>Sort by price</h3>
+            <PriceRangeInput />
+            <Separator />
 
-          <h3>Sorting method</h3>
-          <SortCombobox />
-        </section>
+            <h3>Sorting method</h3>
+            <SortCombobox />
+          </section>
+        </Suspense>
       </div>
 
       {children}

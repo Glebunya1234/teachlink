@@ -9,7 +9,6 @@ import { ReviewCard } from "@/components/card/user-detail-card/review-card/Revie
 import { SubjectsCard } from "@/components/card/user-detail-card/subjects-card/SubjectsCard";
 import { ContactComponent } from "@/components/connect-component/ContactComponent";
 import {
-  UserConnectFarmer,
   UserContentFarmer,
   UserProfileFarmer,
   UserSubjectFarmer,
@@ -17,7 +16,7 @@ import {
 import { TeacherQuery } from "@/quaries";
 
 interface UserPageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const UserPage: FC<UserPageProps> = async ({ params }) => {

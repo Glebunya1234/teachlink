@@ -1,4 +1,3 @@
-
 export const PathPJ = {
     tutorProfile: "/profile/tutor-profile/",
     studentProfile: "/profile/student-profile/",
@@ -12,5 +11,5 @@ export const PathPJ = {
     notification: "/notification",
     login: "/log-in",
     signup: "/sign-up",
-    baseURL: "http://localhost:5204",
+    baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:5204",
 }

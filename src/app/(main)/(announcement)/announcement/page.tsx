@@ -9,6 +9,8 @@ import { EmptyPlaceholder } from "@/components/ui/empty-placeholder/EmptyPlaceho
 import { AnnouncementsQuery } from "@/quaries";
 import { PathPJ } from "@/utils/path";
 
+export const dynamic = "force-dynamic";
+
 const AnnouncementPage = async () => {
   const { data } = await AnnouncementsQuery().announcementsList();
   return (

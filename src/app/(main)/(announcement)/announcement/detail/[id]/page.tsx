@@ -6,7 +6,7 @@ import { AnnouncementCardDetal } from "@/components/card/announcement-card/annou
 import { ContactComponent } from "@/components/connect-component/ContactComponent";
 import { AnnouncementsQuery } from "@/quaries";
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 const DetailPage: FC<Props> = async ({ params }) => {
   const { id } = await params;

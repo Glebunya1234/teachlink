@@ -9,7 +9,7 @@ import { EmptyPlaceholder } from "@/components/ui/empty-placeholder/EmptyPlaceho
 import { AnnouncementsQuery } from "@/quaries";
 import { PathPJ } from "@/utils/path";
 interface Props {
-  params: { id: number };
+  params: Promise<{ id: number }>;
 }
 const Page: FC<Props> = async ({ params }) => {
   const { id } = await params;
@@ -42,4 +42,5 @@ const Page: FC<Props> = async ({ params }) => {
     </div>
   );
 };
+
 export default Page;

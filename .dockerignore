@@ -1,0 +1,32 @@
+# Env
+/.env
+
+# Docker
+Dockerfile
+/Dockerfile*
+/.dockerignore
+/docker-compose*
+
+# Output
+/.next
+/.turbo
+/dist
+/node_modules
+/npm-debug.log
+
+# IDE
+/.vs
+/.vscode
+/*.*proj.user
+
+# Git & Github
+.github
+LICENSE
+README.md
+/.git
+/.gitignore
+!/.gitignore
+!.git/HEAD
+!.git/config
+!.git/packed-refs
+!.git/refs/heads/
