@@ -3,9 +3,9 @@ import React, { FC } from "react";
 import styles from "../tutors.module.scss";
 
 import TeachersCard from "@/components/card/teachers-card/TeachersCard";
+import { EmptyPlaceholder } from "@/components/empty-placeholder/EmptyPlaceholder";
 import { TeacherCardFarmer } from "@/components/farmer-components/teacher-card-farmer/TeacherCardFarmer";
 import { PaginationComponent } from "@/components/pagination";
-import { EmptyPlaceholder } from "@/components/empty-placeholder/EmptyPlaceholder";
 import { SortByEnumMDB } from "@/gen/data-contracts";
 import { TeacherQuery } from "@/quaries";
 import { PathPJ } from "@/utils/path";

@@ -5,6 +5,6 @@ import { PathPJ } from "@/utils/path"
 
 export const AuthQuery = () => {
     return new IsChekedRole({
-        baseURL: PathPJ.baseURL,
+        baseURL: PathPJ.clientBaseURL,
     })
 }
